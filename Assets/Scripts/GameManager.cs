@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     private bool isGamePaused = false;
     private bool isGameWon = false;
     private bool isGameLost = false;
+    public bool fightStarted = false;
 
     private void Awake()
     {

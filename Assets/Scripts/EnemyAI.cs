@@ -43,7 +43,7 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        if(fighter.isDead || opponentFighter.isDead) return;
+        if(fighter.isDead || opponentFighter.isDead || !GameManager.Instance.fightStarted) return;
         distanceToPlayer = Mathf.Abs(transform.position.x - player.position.x);
         Quaternion targetRotation = Quaternion.LookRotation(new Vector3((player.position-transform.position).x, 0f, 0f));
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);

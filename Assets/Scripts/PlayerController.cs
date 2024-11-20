@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update() {
-        if(fighter.isDead || opponentFighter.isDead) return;
+        if(fighter.isDead || opponentFighter.isDead || !GameManager.Instance.fightStarted) return;
         distanceToEnemy = Mathf.Abs(transform.position.x - enemy.position.x);
         PerformMovement();
         if(Time.time - lastAttackTime > attackCooldown){
