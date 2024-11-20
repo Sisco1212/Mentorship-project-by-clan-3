@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     public void PerformHurt(float damageAmount){
         if(!isPlayerBlocking){
             animator.Play("Hurt");
+            GameManager.Instance.ShakeCamera();
             fighter.TakeDamage(damageAmount);
         }
     }
@@ -64,21 +65,24 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("Block", isPlayerBlocking);
 
+        Quaternion targetRotation = Quaternion.LookRotation(new Vector3((enemy.position-transform.position).x, 0f, 0f));
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
         Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
 
         if(movement != Vector3.zero)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(movement);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            
-            if(horizontalInput != 0)
-            {
+            if(horizontalInput>0){
                 animator.SetBool("Walking", true);
+            }
+            else{
+                animator.SetBool("WalkingBack", true);
             }
         }
         else
         {
             animator.SetBool("Walking", false);
+            animator.SetBool("WalkingBack", false);
         }
 
         characterController.Move(movement * movementSpeed * Time.deltaTime); 

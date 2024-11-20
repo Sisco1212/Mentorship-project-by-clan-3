@@ -56,12 +56,16 @@ public class GameManager : MonoBehaviour
             Debug.Log("You Lost the Fight!");
         }
     }
-    
+
     public void ResetGameStates()
     {
         isGamePaused = false;
         isGameWon = false;
         isGameLost = false;
         Time.timeScale = 1f;  // Ensure time scale is reset
+    }
+
+    public void ShakeCamera(float magnitude=0.08f, float duration=0.2f){
+        Camera.main.gameObject.GetComponent<CameraController>().StartShake(magnitude, duration);
     }
 }
