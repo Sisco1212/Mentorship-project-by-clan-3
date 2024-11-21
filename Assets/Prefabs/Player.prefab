@@ -5621,6 +5621,7 @@ GameObject:
   - component: {fileID: 6332573263898895782}
   - component: {fileID: 630757486116866306}
   - component: {fileID: 2511901121963010155}
+  - component: {fileID: 4927568577593278829}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5686,7 +5687,9 @@ MonoBehaviour:
   rightFootTransform: {fileID: 6792462483639045964}
   leftHandTransform: {fileID: 7914602954710357639}
   rightHandTransform: {fileID: 9062399249711773013}
-  health: 100
+  healthSlider: {fileID: 0}
+  maxHealth: 100
+  isDead: 0
 --- !u!143 &630757486116866306
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5708,8 +5711,8 @@ CharacterController:
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.3
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_SlopeLimit: 0
+  m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
@@ -5730,7 +5733,7 @@ MonoBehaviour:
   characterController: {fileID: 630757486116866306}
   animator: {fileID: 342584941053536186}
   attackCooldown: 0.5
-  attackDamages: 5
+  attackDamages: 7
   attackAnimations:
   - att1
   - att2
@@ -5744,6 +5747,27 @@ MonoBehaviour:
   - {fileID: 8443315704496310908, guid: 6ef35fa36e3a65043b2d800600204bdd, type: 3}
   isPlayerAttacking: 0
   isPlayerBlocking: 0
+--- !u!65 &4927568577593278829
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4869232321887818139}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3, y: 1, z: 0.7}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &4894496071703840534
 GameObject:
   m_ObjectHideFlags: 0

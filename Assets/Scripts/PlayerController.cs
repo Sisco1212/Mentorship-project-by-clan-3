@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [Header("Other")]
     private Transform enemy;
     public float attackRange = 1.5f;
+    public float canApproachLimit = 1.1f;
     public ParticleSystem[] attackEffects = {};
     public bool isPlayerAttacking = false;
     public bool isPlayerBlocking = false;
@@ -39,13 +40,14 @@ public class PlayerController : MonoBehaviour
         if(Time.time - lastAttackTime > attackCooldown){
             isPlayerAttacking = false;
         }
-        if(Input.GetKeyDown("space")){
+        if(GestureDetector.Instance.IsSingleTapRight()){
             PerformAttack(Random.Range(0, attackAnimations.Length));
         }
-        if(Input.GetKeyDown(KeyCode.LeftControl)){
+        else if(GestureDetector.Instance.IsHoldLeft() && !GestureDetector.Instance.IsSwiping()){
+            Debug.Log(Random.Range(0, 100));
             isPlayerBlocking = true;
         }
-        if(Input.GetKeyUp(KeyCode.LeftControl)){
+        if(!GestureDetector.Instance.IsHoldLeft()){
             isPlayerBlocking = false;
         }
     }
@@ -68,19 +70,21 @@ public class PlayerController : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(new Vector3((enemy.position-transform.position).x, 0f, 0f));
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-        Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
+        Vector3 movement = Vector3.zero;
 
-        if(movement != Vector3.zero)
-        {
-            if(horizontalInput>0){
-                animator.SetBool("Walking", true);
+        if(GestureDetector.Instance.IsSwipingRight()){
+            if(distanceToEnemy>=canApproachLimit){
+                movement = new Vector3(1f, 0f, 0f);
             }
-            else{
-                animator.SetBool("WalkingBack", true);
-            }
+            animator.SetBool("Walking", true);
+        }
+        else if(GestureDetector.Instance.IsSwipingLeft()){
+            movement = new Vector3(-1f, 0f, 0f);
+            animator.SetBool("WalkingBack", true);
         }
         else
         {
+            movement = Vector3.zero;
             animator.SetBool("Walking", false);
             animator.SetBool("WalkingBack", false);
         }

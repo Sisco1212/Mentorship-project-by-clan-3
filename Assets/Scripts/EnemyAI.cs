@@ -65,7 +65,7 @@ public class EnemyAI : MonoBehaviour
         if (actionTimer <= 0)
         {
             MakeDecision();
-            actionTimer = Random.Range(0.7f, 2.5f);
+            actionTimer = Random.Range(currentState==AIState.Attack ? 0.5f : 0.7f, currentState==AIState.Attack ? 1.2f : 2.5f);
         }
     }
 
@@ -83,7 +83,7 @@ public class EnemyAI : MonoBehaviour
         {
             if (player.gameObject.GetComponent<PlayerController>().isPlayerAttacking)
             {
-                DefendOrDodge();
+                DefendOrRetreat();
             }
             else
             {
@@ -110,11 +110,11 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("Enemy attacks!");
     }
 
-    private void DefendOrDodge()
+    private void DefendOrRetreat()
     {
-        int actionChoice = Random.Range(0, 2);
+        int actionChoice = Random.Range(0, 10);
         
-        if (actionChoice == 0)
+        if (actionChoice < 8)
         {
             currentState = AIState.Defend;
             animator.SetTrigger("block");
@@ -122,9 +122,7 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            /* currentState = AIState.Dodge;
-            animator.SetTrigger("Dodge");
-            Debug.Log("Enemy dodges!"); */
+            Retreat();
         }
     }
 
