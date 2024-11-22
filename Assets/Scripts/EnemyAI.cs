@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
     public float attackRange = 1.5f;
     public float retreatRange = 2.5f;
     public float actionCooldown = 1.0f;
-    public float walkSpeed = 1.0f;
+    public float walkSpeed = 2.0f;
 
     public CharacterController characterController;
     
@@ -51,12 +51,12 @@ public class EnemyAI : MonoBehaviour
 
         switch(currentState){
             case AIState.Approach:
-                characterController.Move((new Vector3((player.position-transform.position).x, 0f, 0f).normalized) * walkSpeed * Time.deltaTime);
+                characterController.Move((new Vector3((player.position-transform.position).x, 0f, 0f).normalized) * movementSpeed * Time.deltaTime);
                 if(distanceToPlayer <= attackRange)
                     Idle();
                 break;
             case AIState.Retreat:
-                characterController.Move((new Vector3((transform.position-player.position).x, 0f, 0f).normalized) * walkSpeed * Time.deltaTime);
+                characterController.Move((new Vector3((transform.position-player.position).x, 0f, 0f).normalized) * movementSpeed * Time.deltaTime);
                 break;
             default:
                 break;

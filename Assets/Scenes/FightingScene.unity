@@ -580,32 +580,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &820161644 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1702783421981427750, guid: dce2736ad672d214c9641d9a192c9748, type: 3}
-  m_PrefabInstance: {fileID: 4676372390106346316}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &820161650
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820161644}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1.5, y: 5, z: 3.5}
-  m_Center: {x: 0, y: 5, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,7 +1813,7 @@ MonoBehaviour:
   attackRange: 1.2
   retreatRange: 0.7
   actionCooldown: 0.8
-  walkSpeed: 1
+  walkSpeed: 2
   characterController: {fileID: 2788778949493788997}
   attackTriggers:
   - a1
@@ -2062,10 +2036,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1702783421981427750, guid: dce2736ad672d214c9641d9a192c9748, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 820161650}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1702783421981427750, guid: dce2736ad672d214c9641d9a192c9748, type: 3}
       insertIndex: -1
@@ -2618,6 +2588,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2511901121963010155, guid: ee113d1906f9bea468cd330c490625fd, type: 3}
+      propertyPath: attackRange
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2599969283742134471, guid: ee113d1906f9bea468cd330c490625fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3
@@ -2699,3 +2673,4 @@ SceneRoots:
   - {fileID: 1139253269}
   - {fileID: 362102579}
   - {fileID: 1035051709314695004}
+  - {fileID: 1356039061}
