@@ -6,7 +6,7 @@ public class GestureDetector : MonoBehaviour
     public static GestureDetector Instance { get; private set; }
 
     public float tapMaxDuration = 0.1f; // Max duration to consider a tap
-    public float doubleTapMaxInterval = 0.2f; // Max interval for double tap
+    public float doubleTapMaxInterval = 0.3f; // Max interval for double tap
     public float holdThreshold = 0.1f; // Duration required to consider a hold
     public float swipeThreshold = 50f; // Minimum distance for a swipe
     public float swipeDetectionThreshold = 15f; // Minimum X distance to detect ongoing swipes left/right
@@ -151,14 +151,15 @@ public class GestureDetector : MonoBehaviour
 
     private void HandleTap(ref bool isSingleTap, ref float lastTapTime, ref bool isDoubleTap)
     {
-        if (Time.time - lastTapTime <= doubleTapMaxInterval)
+        isSingleTap = true;
+        /* if (Time.time - lastTapTime <= doubleTapMaxInterval)
         {
             isDoubleTap = true;
         }
         else
         {
             isSingleTap = true;
-        }
+        } */
         lastTapTime = Time.time;
     }
 

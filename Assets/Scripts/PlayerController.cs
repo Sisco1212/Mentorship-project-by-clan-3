@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
     [Header("Player Fight")]
-    public float attackCooldown = 0.5f;
+    public float attackCooldown = 0.25f;
     public int attackDamages = 5;
     public string[] attackAnimations = {"att1", "att2", "att3", "att4"};
     private float lastAttackTime;
