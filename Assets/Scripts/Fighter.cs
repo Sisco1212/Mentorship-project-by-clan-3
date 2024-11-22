@@ -17,7 +17,7 @@ public class Fighter : MonoBehaviour
     public float gravity = 9.8f;
     private Vector3 velocity;
 
-    private float jumpHeight = 1.1f;
+    private float jumpHeight = 1f;
     private float jumpVelocity;
 
     private void Start()
