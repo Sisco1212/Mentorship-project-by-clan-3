@@ -21,6 +21,8 @@ public class ScenesManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        // tapAnimation = gameObject.Find("TapText").GetComponent<Animator>();
     }
 
     // Update is called once per frame
