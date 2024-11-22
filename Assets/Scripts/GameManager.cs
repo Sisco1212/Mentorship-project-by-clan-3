@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     public AudioClip[] hitSounds = {};
     public AudioClip[] blockSounds = {};
     private AudioSource audioSource;
+    
+    public GameObject winText;
+    public GameObject lostText;
+    private ScenesManager scenes;
 
     private void Awake()
     {
@@ -28,6 +32,7 @@ public class GameManager : MonoBehaviour
         }
         dialogueTrigger = FindObjectOfType<DialogueTrigger>();
         audioSource = GetComponent<AudioSource>();
+        scenes = FindObjectOfType<ScenesManager>();
     }
 
     public void PauseGame()
@@ -57,7 +62,9 @@ public class GameManager : MonoBehaviour
         }
 
         // dialogueTrigger.TriggerDialogue();
-
+    winText.SetActive(true);
+    // StartCoroutine(Loading());
+    scenes.LoadLevelSelection();
     }
 
     public void LoseFight()
@@ -67,6 +74,8 @@ public class GameManager : MonoBehaviour
             isGameLost = true;
             Debug.Log("You Lost the Fight!");
         }
+
+        lostText.SetActive(true);
     }
 
     public void ResetGameStates()
@@ -101,5 +110,16 @@ public class GameManager : MonoBehaviour
             audioSource.Play();
         }
     }
+        public void Retry() {
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
 
+    //     public void LoadLevelSelection() {
+	// 	SceneManager.LoadScene("LevelSelection");
+	// }
+
+//  IEnumerator Loading() {
+//         yield return new WaitForSeconds(2.0f);
+//         LoadLevelSelection();
+//     }
 }
