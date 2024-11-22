@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
     private bool isGameWon = false;
     private bool isGameLost = false;
     public bool fightStarted = false;
+    DialogueTrigger dialogueTrigger;
 
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        dialogueTrigger = FindObjectOfType<DialogueTrigger>();
     }
 
     public void PauseGame()
@@ -47,6 +50,9 @@ public class GameManager : MonoBehaviour
             isGameWon = true;
             Debug.Log("You Won the Fight!");
         }
+
+        // dialogueTrigger.TriggerDialogue();
+
     }
 
     public void LoseFight()
@@ -69,4 +75,12 @@ public class GameManager : MonoBehaviour
     public void ShakeCamera(float magnitude=0.08f, float duration=0.2f){
         Camera.main.gameObject.GetComponent<CameraController>().StartShake(magnitude, duration);
     }
+
+    	public void LoadMenu() {
+		SceneManager.LoadScene("Menu");
+	}
+        public void LoadLevel1() {
+		SceneManager.LoadScene("FightingScene");
+	}
+
 }

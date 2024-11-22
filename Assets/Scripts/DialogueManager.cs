@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Image characterImage;
     
+    DialogueTrigger dialogueTrigger;
 
     public Animator animator;
 
@@ -38,6 +39,8 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
         names = new Queue<string>();
         images = new Queue<Sprite>();
+        dialogueTrigger = FindObjectOfType<DialogueTrigger>();
+        dialogueTrigger.TriggerDialogue();
     }
 
     public void StartDialogue(Dialogue dialogue)
