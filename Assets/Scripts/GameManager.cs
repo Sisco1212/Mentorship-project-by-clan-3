@@ -23,16 +23,23 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            Instance = this; // Assign the singleton instance
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // Destroy duplicate instances
         }
         dialogueTrigger = FindObjectOfType<DialogueTrigger>();
         audioSource = GetComponent<AudioSource>();
         scenes = FindObjectOfType<ScenesManager>();
+    }
+
+     private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null; // Reset Instance when destroyed to allow fresh instance in new scene
+        }
     }
 
     public void PauseGame()
@@ -64,7 +71,11 @@ public class GameManager : MonoBehaviour
         // dialogueTrigger.TriggerDialogue();
     winText.SetActive(true);
     // StartCoroutine(Loading());
-    scenes.LoadLevelSelection();
+        Invoke("LevelSelection", 3.5f);
+    }
+
+    private void LevelSelection(){
+        scenes.LoadLevelSelection();
     }
 
     public void LoseFight()

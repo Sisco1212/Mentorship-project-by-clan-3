@@ -54,46 +54,71 @@ public class GestureDetector : MonoBehaviour
         isSwipeUpRight = isSwipeUpLeft = isSwipeDownRight = isSwipeDownLeft = false;
         isSwipingLeft = isSwipingRight = false; // Reset swiping states
     }
+    private void HandleTap(ref bool isSingleTap, ref float lastTapTime, ref bool isDoubleTap)
+    {
+        isSingleTap = true;
+        /* if (Time.time - lastTapTime <= doubleTapMaxInterval)
+        {
+            isDoubleTap = true;
+        }
+        else
+        {
+            isSingleTap = true;
+        } */
+        lastTapTime = Time.time;
+    }
 
     private void DetectMouseInput()
+{
+    if (Input.GetMouseButtonDown(0))
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            startTouchPos = Input.mousePosition;
-            startTouchTime = Time.time;
+        startTouchPos = Input.mousePosition;
+        startTouchTime = Time.time;
 
-            if (Input.mousePosition.x < Screen.width / 2) leftHoldActive = true;
-            else rightHoldActive = true;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            Vector2 currentTouchPos = Input.mousePosition;
-            DetectOngoingSwipe(currentTouchPos); // Detect real-time swiping
+        if (Input.mousePosition.x < Screen.width / 2) leftHoldActive = true;
+        else rightHoldActive = true;
+    }
+    else if (Input.GetMouseButton(0))
+    {
+        Vector2 currentTouchPos = Input.mousePosition;
+        DetectOngoingSwipe(currentTouchPos); // Detect real-time swiping
 
+        // Calculate the movement distance
+        float distanceMoved = Vector2.Distance(startTouchPos, currentTouchPos);
+
+        // Only consider as hold if the distance moved is below the threshold (indicating no swipe)
+        if (distanceMoved < 15f) // Adjust this threshold as necessary
+        {
             if (Input.mousePosition.x < Screen.width / 2 && leftHoldActive && Time.time - startTouchTime >= holdThreshold)
                 isHoldLeft = true;
             if (Input.mousePosition.x >= Screen.width / 2 && rightHoldActive && Time.time - startTouchTime >= holdThreshold)
                 isHoldRight = true;
         }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            float touchDuration = Time.time - startTouchTime;
-            Vector2 endTouchPos = Input.mousePosition;
-
-            if (touchDuration <= tapMaxDuration)
-            {
-                if (Input.mousePosition.x < Screen.width / 2) HandleTap(ref isSingleTapLeft, ref leftTapTime, ref isDoubleTapLeft);
-                else HandleTap(ref isSingleTapRight, ref rightTapTime, ref isDoubleTapRight);
-            }
-            else
-            {
-                if (Input.mousePosition.x < Screen.width / 2) leftHoldActive = false;
-                else rightHoldActive = false;
-            }
-
-            DetectSwipe(endTouchPos);
-        }
     }
+    else if (Input.GetMouseButtonUp(0))
+    {
+        float touchDuration = Time.time - startTouchTime;
+        Vector2 endTouchPos = Input.mousePosition;
+
+        // Calculate the movement distance
+        float distanceMoved = Vector2.Distance(startTouchPos, endTouchPos);
+
+        // Check for single tap only if movement is minimal (not a swipe)
+        if (touchDuration <= tapMaxDuration && distanceMoved < 15f)
+        {
+            if (Input.mousePosition.x < Screen.width / 2) HandleTap(ref isSingleTapLeft, ref leftTapTime, ref isDoubleTapLeft);
+            else HandleTap(ref isSingleTapRight, ref rightTapTime, ref isDoubleTapRight);
+        }
+
+        // Reset hold states after releasing the button
+        leftHoldActive = false;
+        rightHoldActive = false;
+
+        // Detect swipe only if the movement exceeded the threshold
+        if (distanceMoved >= 15f)
+            DetectSwipe(endTouchPos);
+    }
+}
 
     private void DetectTouches()
     {
@@ -116,51 +141,47 @@ public class GestureDetector : MonoBehaviour
                         break;
 
                     case TouchPhase.Moved:
-                        DetectOngoingSwipe(touch.position); // Detect real-time swiping
+                        // Calculate the movement distance
+                        float distanceMoved = Vector2.Distance(startTouchPos, touch.position);
+
+                        // Detect swipe if movement exceeds threshold
+                        if (distanceMoved >= 15f)
+                        {
+                            DetectOngoingSwipe(touch.position);
+                        }
+                        break;
+
+                    case TouchPhase.Stationary:
+                        float timeHeld = Time.time - startTouchTime;
+                        // Only consider as hold if the distance moved is below the threshold (indicating no swipe)
+                        if (isLeftSide && leftHoldActive && timeHeld >= holdThreshold && Vector2.Distance(startTouchPos, touchPos) < 15f)
+                            isHoldLeft = true;
+                        if (isRightSide && rightHoldActive && timeHeld >= holdThreshold && Vector2.Distance(startTouchPos, touchPos) < 15f)
+                            isHoldRight = true;
                         break;
 
                     case TouchPhase.Ended:
                         float touchDuration = Time.time - startTouchTime;
+                        float endDistanceMoved = Vector2.Distance(startTouchPos, touchPos);
 
-                        // Check for single tap
-                        if (touchDuration <= tapMaxDuration)
+                        // Check for single tap if duration and movement are within threshold (indicating no swipe)
+                        if (touchDuration <= tapMaxDuration && endDistanceMoved < 15f)
                         {
                             if (isLeftSide) HandleTap(ref isSingleTapLeft, ref leftTapTime, ref isDoubleTapLeft);
                             if (isRightSide) HandleTap(ref isSingleTapRight, ref rightTapTime, ref isDoubleTapRight);
                         }
-                        else
-                        {
-                            if (isLeftSide) leftHoldActive = false;
-                            if (isRightSide) rightHoldActive = false;
-                        }
 
-                        // Check for swipe
-                        DetectSwipe(touchPos);
-                        break;
+                        // Reset hold states after touch ends
+                        leftHoldActive = false;
+                        rightHoldActive = false;
 
-                    case TouchPhase.Stationary:
-                        if (isLeftSide && leftHoldActive && Time.time - startTouchTime >= holdThreshold)
-                            isHoldLeft = true;
-                        if (isRightSide && rightHoldActive && Time.time - startTouchTime >= holdThreshold)
-                            isHoldRight = true;
+                        // Detect swipe only if the movement exceeded the threshold
+                        if (endDistanceMoved >= 15f)
+                            DetectSwipe(touchPos);
                         break;
                 }
             }
         }
-    }
-
-    private void HandleTap(ref bool isSingleTap, ref float lastTapTime, ref bool isDoubleTap)
-    {
-        isSingleTap = true;
-        /* if (Time.time - lastTapTime <= doubleTapMaxInterval)
-        {
-            isDoubleTap = true;
-        }
-        else
-        {
-            isSingleTap = true;
-        } */
-        lastTapTime = Time.time;
     }
 
     private void DetectSwipe(Vector2 endTouchPos)
