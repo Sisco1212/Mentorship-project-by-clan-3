@@ -14,14 +14,18 @@ public class Fighter : MonoBehaviour
     public float maxHealth = 100f;
     private float currentHealth;
     public bool isDead = false;
-    private float gravity = 10f;
+    public float gravity = 9.8f;
     private Vector3 velocity;
+
+    private float jumpHeight = 1.1f;
+    private float jumpVelocity;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         currentHealth = maxHealth;
+        jumpVelocity = Mathf.Sqrt(jumpHeight * 2f * gravity);
         healthSlider.maxValue = maxHealth;
         healthSlider.value = currentHealth;
     }
@@ -34,6 +38,12 @@ public class Fighter : MonoBehaviour
 
         if(!isDead && currentHealth<=0){
             isDead = true;
+            if(gameObject.CompareTag("Player")){
+                GameManager.Instance.LoseFight();
+            }
+            else{
+                GameManager.Instance.WinFight();
+            }
         }
     }
 
@@ -42,6 +52,7 @@ public class Fighter : MonoBehaviour
         Vector3 position = transform.position;
         position.z = 0;
         transform.position = position;
+        
 
         if (controller.isGrounded && velocity.y < 0)
         {
@@ -53,6 +64,18 @@ public class Fighter : MonoBehaviour
 
         // Apply velocity to move character downwards
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void ApplyJumpForce(){
+        velocity.y = jumpVelocity;
+    }
+
+    public void Jump()
+    {
+        if (controller.isGrounded)
+        {
+            animator.Play("Jump");
+        }
     }
 }
 

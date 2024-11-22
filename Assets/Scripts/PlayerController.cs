@@ -72,6 +72,10 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = Vector3.zero;
 
+        if(GestureDetector.Instance.IsSwipeUp()){
+            fighter.Jump();
+        }
+
         if(GestureDetector.Instance.IsSwipingRight()){
             if(distanceToEnemy>=canApproachLimit){
                 movement = new Vector3(1f, 0f, 0f);

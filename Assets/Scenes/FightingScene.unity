@@ -2561,6 +2561,8 @@ MonoBehaviour:
   healthSlider: {fileID: 1931098497}
   maxHealth: 100
   isDead: 0
+  gravity: 10
+  jumpHeight: 2
 --- !u!224 &3097226044078242212
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3358,6 +3360,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6332573263898895782, guid: ee113d1906f9bea468cd330c490625fd, type: 3}
+      propertyPath: jumpHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6332573263898895782, guid: ee113d1906f9bea468cd330c490625fd, type: 3}
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1838817990}
@@ -3390,7 +3396,4 @@ SceneRoots:
   - {fileID: 1139253269}
   - {fileID: 362102579}
   - {fileID: 1035051709314695004}
-  - {fileID: 1356039061}
-
-  - {fileID: 362102579}
   - {fileID: 1356039061}
