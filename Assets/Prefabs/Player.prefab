@@ -5621,7 +5621,6 @@ GameObject:
   - component: {fileID: 6332573263898895782}
   - component: {fileID: 630757486116866306}
   - component: {fileID: 2511901121963010155}
-  - component: {fileID: 4927568577593278829}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5690,6 +5689,7 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   maxHealth: 100
   isDead: 0
+  gravity: 9.8
 --- !u!143 &630757486116866306
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5739,7 +5739,8 @@ MonoBehaviour:
   - att2
   - att3
   - att4
-  attackRange: 1.5
+  attackRange: 1.4
+  canApproachLimit: 1.1
   attackEffects:
   - {fileID: 7226583673155636403, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
   - {fileID: 5024009746357069192, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
@@ -5747,27 +5748,6 @@ MonoBehaviour:
   - {fileID: 8443315704496310908, guid: 6ef35fa36e3a65043b2d800600204bdd, type: 3}
   isPlayerAttacking: 0
   isPlayerBlocking: 0
---- !u!65 &4927568577593278829
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4869232321887818139}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.3, y: 1, z: 0.7}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &4894496071703840534
 GameObject:
   m_ObjectHideFlags: 0

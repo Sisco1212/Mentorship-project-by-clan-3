@@ -55,8 +55,12 @@ public class PlayerController : MonoBehaviour
     public void PerformHurt(float damageAmount){
         if(!isPlayerBlocking){
             animator.Play("Hurt");
+            GameManager.Instance.PlayHitSound(); 
             GameManager.Instance.ShakeCamera();
             fighter.TakeDamage(damageAmount);
+        }
+        else{
+            GameManager.Instance.PlayBlockSound();
         }
     }
 

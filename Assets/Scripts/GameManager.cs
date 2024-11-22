@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public bool fightStarted = false;
     DialogueTrigger dialogueTrigger;
 
+    public AudioClip[] hitSounds = {};
+    public AudioClip[] blockSounds = {};
+    private AudioSource audioSource;
+
     private void Awake()
     {
         if (Instance == null)
@@ -23,6 +27,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         dialogueTrigger = FindObjectOfType<DialogueTrigger>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void PauseGame()
@@ -82,5 +87,19 @@ public class GameManager : MonoBehaviour
         public void LoadLevel1() {
 		SceneManager.LoadScene("FightingScene");
 	}
+
+    public void PlayHitSound(){
+        if(audioSource != null && hitSounds.Length>0){
+            audioSource.clip = hitSounds[Random.Range(0, hitSounds.Length)];
+            audioSource.Play();
+        }
+    }
+
+    public void PlayBlockSound(){
+        if(audioSource != null && blockSounds.Length>0){
+            audioSource.clip = blockSounds[Random.Range(0, blockSounds.Length)];
+            audioSource.Play();
+        }
+    }
 
 }

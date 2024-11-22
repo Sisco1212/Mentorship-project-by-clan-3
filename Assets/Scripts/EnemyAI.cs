@@ -129,8 +129,12 @@ public class EnemyAI : MonoBehaviour
     public void PerformHurt(float damageAmount){
         if(currentState != AIState.Defend){
             animator.SetTrigger("hurt");
+            GameManager.Instance.PlayHitSound();
             GameManager.Instance.ShakeCamera();
             fighter.TakeDamage(damageAmount);
+        }
+        else{
+            GameManager.Instance.PlayBlockSound();
         }
     }
 
