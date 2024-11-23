@@ -126,6 +126,13 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private void PushBackEffect(){
+        Vector3 slideVal = (transform.position-player.position).normalized * 0.25f;
+        slideVal.y = 0f;
+        slideVal.z = 0f;
+        characterController.Move(slideVal);
+    }
+
     public void PerformHurt(float damageAmount){
         if(currentState != AIState.Defend){
             animator.SetTrigger("hurt");
@@ -136,6 +143,7 @@ public class EnemyAI : MonoBehaviour
         else{
             GameManager.Instance.PlayBlockSound();
         }
+        //PushBackEffect();
     }
 
     private void ApproachPlayer()

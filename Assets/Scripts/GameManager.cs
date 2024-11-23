@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
 
     public void WinFight()
     {
+        fightStarted = false;
+        GameObject.FindWithTag("Player").GetComponent<PlayerController>().PerformWin();
+        Camera.main.gameObject.GetComponent<CameraController>().StartEllipseRotation();
         if (!isGameWon && !isGameLost)
         {
             isGameWon = true;
@@ -69,9 +72,9 @@ public class GameManager : MonoBehaviour
         }
 
         // dialogueTrigger.TriggerDialogue();
-    winText.SetActive(true);
-    // StartCoroutine(Loading());
-        Invoke("LevelSelection", 3.5f);
+        winText.SetActive(true);
+        // StartCoroutine(Loading());
+        Invoke("WinAnimation", 3f);
     }
 
     private void LevelSelection(){
@@ -80,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     public void LoseFight()
     {
+        fightStarted = false;
         if (!isGameLost && !isGameWon)
         {
             isGameLost = true;
@@ -87,6 +91,17 @@ public class GameManager : MonoBehaviour
         }
 
         lostText.SetActive(true);
+        Invoke("LostAnimation", 3f);
+    }
+
+    private void WinAnimation(){
+        GameObject.FindWithTag("Player").GetComponent<PlayerController>().PerformWin();
+        Camera.main.gameObject.GetComponent<CameraController>().StartEllipseRotation();
+    }
+
+    private void LostAnimation(){
+        GameObject.FindWithTag("Player").GetComponent<PlayerController>().PerformLost();
+        Camera.main.gameObject.GetComponent<CameraController>().StartEllipseRotation();
     }
 
     public void ResetGameStates()

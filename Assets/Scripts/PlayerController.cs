@@ -52,6 +52,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void PushBackEffect(){
+        Vector3 slideVal = (transform.position-enemy.position).normalized * 0.25f;
+        slideVal.y = 0f;
+        slideVal.z = 0f;
+        characterController.Move(slideVal);
+    }
+
     public void PerformHurt(float damageAmount){
         if(!isPlayerBlocking){
             animator.Play("Hurt");
@@ -62,6 +69,15 @@ public class PlayerController : MonoBehaviour
         else{
             GameManager.Instance.PlayBlockSound();
         }
+        //PushBackEffect();
+    }
+
+    public void PerformWin(){
+        animator.Play("ExcitedAnim");
+    }
+
+    public void PerformLost(){
+        animator.Play("SadAnim");
     }
 
     void PerformMovement()
