@@ -5,42 +5,46 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour
 {
-    public static ScenesManager InstanceTwo { get; private set; }
-
+    // public static ScenesManager InstanceTwo { get; private set; }
+    
     private bool isScreenTapped = false;
-    public Animator tapAnimation;    
+    // public Animator tapAnimation;    
 
-    private void Awake()
-    {
-        if (InstanceTwo == null)
-        {
-            InstanceTwo = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+    // private void Awake()
+    // {
+    //     if (InstanceTwo == null)
+    //     {
+    //         InstanceTwo = this;
+    //         DontDestroyOnLoad(gameObject);
+    //     }
+    //     else
+    //     {
+    //         Destroy(gameObject);
+    //     }
 
-        // tapAnimation = gameObject.Find("TapText").GetComponent<Animator>();
-    }
+    //     // tapAnimation = gameObject.Find("TapText").GetComponent<Animator>();
+    
+    // }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !isScreenTapped)
         {
-
+        
         isScreenTapped = true;
-        tapAnimation.SetBool("ScreenTapped", true);
+        // tapAnimation.SetBool("ScreenTapped", true);
         // LoadLevelSelection();
         StartCoroutine(Loading());
+        // DontDestroyOnLoad(tapAnimation.gameObject);
 }
 }
 
     IEnumerator Loading() {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         LoadLevelSelection();
+        isScreenTapped = false;
+        // tapAnimation.SetBool("ScreenTapped", false);
     }
 
    	public void LoadLevelSelection() {
