@@ -1439,6 +1439,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831736218}
   m_CullTransparentMesh: 1
+--- !u!82 &900709081 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3068857330472581952, guid: 6c54c00756a1931429be9111e6ffe695, type: 3}
+  m_PrefabInstance: {fileID: 1787423104}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1192240419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1950,6 +1955,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3068857330472581952, guid: 6c54c00756a1931429be9111e6ffe695, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068857330472581952, guid: 6c54c00756a1931429be9111e6ffe695, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 363b09446986e2145a960e7bd98d469a, type: 3}
+    - target: {fileID: 3319459465055963330, guid: 6c54c00756a1931429be9111e6ffe695, type: 3}
+      propertyPath: Sfx
+      value: 
+      objectReference: {fileID: 900709081}
+    - target: {fileID: 3319459465055963330, guid: 6c54c00756a1931429be9111e6ffe695, type: 3}
+      propertyPath: Background
+      value: 
+      objectReference: {fileID: 8300000, guid: 363b09446986e2145a960e7bd98d469a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

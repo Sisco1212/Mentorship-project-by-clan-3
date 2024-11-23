@@ -13,7 +13,10 @@ public class GameManager : MonoBehaviour
 
     public AudioClip[] hitSounds = {};
     public AudioClip[] blockSounds = {};
+    public AudioClip Background ;
+
     private AudioSource audioSource;
+    [SerializeField] AudioSource Sfx;
     
     public GameObject winText;
     public GameObject lostText;
@@ -125,12 +128,18 @@ public class GameManager : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
-    //     public void LoadLevelSelection() {
-	// 	SceneManager.LoadScene("LevelSelection");
-	// }
+    private void Start()
+    {
+        Sfx.clip = Background;
+        Sfx.Play(); 
 
-//  IEnumerator Loading() {
-//         yield return new WaitForSeconds(2.0f);
-//         LoadLevelSelection();
-//     }
+    }
+    //     public void LoadLevelSelection() {
+    // 	SceneManager.LoadScene("LevelSelection");
+    // }
+
+    //  IEnumerator Loading() {
+    //         yield return new WaitForSeconds(2.0f);
+    //         LoadLevelSelection();
+    //     }
 }
