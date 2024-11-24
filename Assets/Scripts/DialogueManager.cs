@@ -103,4 +103,6 @@ public class DialogueManager : MonoBehaviour
         GameManager.Instance.fightStarted = true;
         Debug.Log("End of conversation");
     }
+
+    
 }

@@ -17,13 +17,15 @@ public class GameManager : MonoBehaviour
     
     public GameObject winText;
     public GameObject lostText;
-    private ScenesManager scenes;
+    // private ScenesManager scenes;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this; // Assign the singleton instance
+            DontDestroyOnLoad(gameObject);
+
         }
         else
         {
@@ -31,8 +33,12 @@ public class GameManager : MonoBehaviour
         }
         dialogueTrigger = FindObjectOfType<DialogueTrigger>();
         audioSource = GetComponent<AudioSource>();
-        scenes = FindObjectOfType<ScenesManager>();
+        // scenes = FindObjectOfType<ScenesManager>();
+        DontDestroyOnLoad(winText);
+        DontDestroyOnLoad(lostText);
     }
+
+
 
      private void OnDestroy()
     {
@@ -69,6 +75,8 @@ public class GameManager : MonoBehaviour
         {
             isGameWon = true;
             Debug.Log("You Won the Fight!");
+    winText.SetActive(true);
+        Invoke("LevelSelection", 3.5f);
         }
 
         // dialogueTrigger.TriggerDialogue();
@@ -78,7 +86,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void LevelSelection(){
-        scenes.LoadLevelSelection();
+        // FindObjectOfType<ScenesManager>().LoadLevelSelection();
+        SceneManager.LoadScene("LevelSelection");
     }
 
     public void LoseFight()
@@ -88,8 +97,6 @@ public class GameManager : MonoBehaviour
         {
             isGameLost = true;
             Debug.Log("You Lost the Fight!");
-        }
-
         lostText.SetActive(true);
         Invoke("LostAnimation", 3f);
     }
@@ -109,6 +116,7 @@ public class GameManager : MonoBehaviour
         isGamePaused = false;
         isGameWon = false;
         isGameLost = false;
+        fightStarted = false;
         Time.timeScale = 1f;  // Ensure time scale is reset
     }
 
