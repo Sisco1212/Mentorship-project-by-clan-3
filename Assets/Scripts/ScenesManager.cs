@@ -52,7 +52,7 @@ public class ScenesManager : MonoBehaviour
 	}
 
     public void LoadLevel1() {
-		SceneManager.LoadScene("FightingScene");
+		SceneManager.LoadScene("Level1");
 	}
 
 }

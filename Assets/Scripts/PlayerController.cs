@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 30f;
     public CharacterController characterController;
     public Animator animator;
+    public RuntimeAnimatorController winController;
+    public RuntimeAnimatorController loseController;
 
     [Header("Player Fight")]
     public float attackCooldown = 0.25f;
@@ -73,11 +75,11 @@ public class PlayerController : MonoBehaviour
     }
 
     public void PerformWin(){
-        animator.Play("ExcitedAnim");
+        animator.runtimeAnimatorController = winController;
     }
 
     public void PerformLost(){
-        animator.Play("SadAnim");
+        animator.runtimeAnimatorController = loseController;
     }
 
     void PerformMovement()

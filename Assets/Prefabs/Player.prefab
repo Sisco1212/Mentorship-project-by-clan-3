@@ -5732,6 +5732,8 @@ MonoBehaviour:
   rotationSpeed: 30
   characterController: {fileID: 630757486116866306}
   animator: {fileID: 342584941053536186}
+  winController: {fileID: 9100000, guid: fc817b0a48e29344786fe85379ab9840, type: 2}
+  loseController: {fileID: 9100000, guid: e0cfbfa05276fdb4db3ec68106cea87a, type: 2}
   attackCooldown: 0.5
   attackDamages: 7
   attackAnimations:

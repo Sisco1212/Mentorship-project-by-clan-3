@@ -21,31 +21,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this; // Assign the singleton instance
-            DontDestroyOnLoad(gameObject);
-
-        }
-        else
-        {
-            Destroy(gameObject); // Destroy duplicate instances
-        }
+        Instance = this; // Assign the singleton instance
         dialogueTrigger = FindObjectOfType<DialogueTrigger>();
         audioSource = GetComponent<AudioSource>();
-        // scenes = FindObjectOfType<ScenesManager>();
-        DontDestroyOnLoad(winText);
-        DontDestroyOnLoad(lostText);
-    }
-
-
-
-     private void OnDestroy()
-    {
-        if (Instance == this)
-        {
-            Instance = null; // Reset Instance when destroyed to allow fresh instance in new scene
-        }
     }
 
     public void PauseGame()
@@ -69,24 +47,16 @@ public class GameManager : MonoBehaviour
     public void WinFight()
     {
         fightStarted = false;
-        GameObject.FindWithTag("Player").GetComponent<PlayerController>().PerformWin();
-        Camera.main.gameObject.GetComponent<CameraController>().StartEllipseRotation();
         if (!isGameWon && !isGameLost)
         {
             isGameWon = true;
             Debug.Log("You Won the Fight!");
-    winText.SetActive(true);
-        Invoke("LevelSelection", 3.5f);
         }
-
-        // dialogueTrigger.TriggerDialogue();
         winText.SetActive(true);
-        // StartCoroutine(Loading());
         Invoke("WinAnimation", 3f);
     }
 
     private void LevelSelection(){
-        // FindObjectOfType<ScenesManager>().LoadLevelSelection();
         SceneManager.LoadScene("LevelSelection");
     }
 
@@ -97,17 +67,21 @@ public class GameManager : MonoBehaviour
         {
             isGameLost = true;
             Debug.Log("You Lost the Fight!");
+        }
         lostText.SetActive(true);
         Invoke("LostAnimation", 3f);
     }
 
     private void WinAnimation(){
         GameObject.FindWithTag("Player").GetComponent<PlayerController>().PerformWin();
+        GameObject.FindWithTag("Enemy").SetActive(false);
         Camera.main.gameObject.GetComponent<CameraController>().StartEllipseRotation();
+        Invoke("LevelSelection", 7f);
     }
 
     private void LostAnimation(){
         GameObject.FindWithTag("Player").GetComponent<PlayerController>().PerformLost();
+        GameObject.FindWithTag("Enemy").SetActive(false);
         Camera.main.gameObject.GetComponent<CameraController>().StartEllipseRotation();
     }
 
@@ -124,11 +98,13 @@ public class GameManager : MonoBehaviour
         Camera.main.gameObject.GetComponent<CameraController>().StartShake(magnitude, duration);
     }
 
-    	public void LoadMenu() {
+    public void LoadMenu() {
+        ResetGameStates();
 		SceneManager.LoadScene("Menu");
 	}
-        public void LoadLevel1() {
-		SceneManager.LoadScene("FightingScene");
+    public void LoadLevel1() {
+        ResetGameStates();
+		SceneManager.LoadScene("Level1");
 	}
 
     public void PlayHitSound(){
@@ -144,16 +120,8 @@ public class GameManager : MonoBehaviour
             audioSource.Play();
         }
     }
-        public void Retry() {
+    public void Retry() {
+        ResetGameStates();
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
-
-    //     public void LoadLevelSelection() {
-	// 	SceneManager.LoadScene("LevelSelection");
-	// }
-
-//  IEnumerator Loading() {
-//         yield return new WaitForSeconds(2.0f);
-//         LoadLevelSelection();
-//     }
 }

@@ -41,7 +41,7 @@ public class Fighter : MonoBehaviour
             if(gameObject.CompareTag("Player")){
                 GameManager.Instance.LoseFight();
             }
-            else{
+            else if (gameObject.CompareTag("Enemy")){
                 GameManager.Instance.WinFight();
             }
         }
