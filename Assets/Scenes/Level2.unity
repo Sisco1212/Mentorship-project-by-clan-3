@@ -1456,24 +1456,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     names:
-    - Ravager
+    - Serah
     - Ashen
-    - Ravager
+    - Serah
     - Ashen
+    - Serah
+    - Ashen
+    - Serah
     images:
-    - {fileID: 21300000, guid: dfe50ed7f99f01743aba5fee777d9fed, type: 3}
+    - {fileID: 21300000, guid: 42e66eb37c71e7c4e95d6d9157de6b40, type: 3}
     - {fileID: 21300000, guid: efaf5630ae8738e48aada9deb0d877d5, type: 3}
-    - {fileID: 21300000, guid: dfe50ed7f99f01743aba5fee777d9fed, type: 3}
+    - {fileID: 21300000, guid: 42e66eb37c71e7c4e95d6d9157de6b40, type: 3}
     - {fileID: 21300000, guid: efaf5630ae8738e48aada9deb0d877d5, type: 3}
+    - {fileID: 21300000, guid: 42e66eb37c71e7c4e95d6d9157de6b40, type: 3}
+    - {fileID: 21300000, guid: efaf5630ae8738e48aada9deb0d877d5, type: 3}
+    - {fileID: 21300000, guid: 42e66eb37c71e7c4e95d6d9157de6b40, type: 3}
     sentences:
-    - Another lost soul come to throw his life away in the sand? I've crushed bones
-      harder than yours, wastelander.
-    - Maybe, but bones break easier when they're empty. Looks like you've never fought
-      someone with something to fight for.
-    - Big words for someone who'll be a smear on this dirt in minutes. You think
-      the crubicle cares about your reasons? This isn't a storybook. It's a survival.
-      And I'm the one who survives.
-    - Let's see if all that talk is as strong as your fists.
+    - So, you've come this far, wastelander. I see the fire in your eyes, that same
+      fire burned in mine once. But fire alone won't save you.
+    - I've fought through too much to stop now. If you're here to stop me, you'll
+      fail, just like the others.
+    - Stop you? No, I'm here to see if you deserve what you're chasing. Sanctuary
+      isn't what you think it is. It's a glided trap, built on the blood and suffering
+      of fools who believed in it's lies. I should know - I helped build it.
+    - If you know the truth, then why are you standing in my way? Let me pass, or
+      fight me. I don't have time for riddles.
+    - You think you can save your people by walking into that fortress? I thought
+      the same once. Sanctuary doesn't save, it enslaves. But you're too blind to
+      see it... yet.
+    - Maybe. Or maybe I see what you're afraid of. If sanctuary is so dangerous,
+      then why not fight with me instad of against me?
+    - Because the Crucible demands strength, and I need to know if you have what
+      it takes. Show me Ashen. Prove to me you're more than just another desperate
+      soul chasing a dream.
 --- !u!1 &1363265089
 GameObject:
   m_ObjectHideFlags: 0
@@ -3075,7 +3090,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 128.3, y: 10}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 200, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &3332468376674550927
 RectTransform:
@@ -3476,7 +3491,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -40}
+  m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &5571051182803451384

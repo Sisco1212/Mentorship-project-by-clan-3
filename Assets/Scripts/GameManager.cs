@@ -13,17 +13,31 @@ public class GameManager : MonoBehaviour
 
     public AudioClip[] hitSounds = {};
     public AudioClip[] blockSounds = {};
-    private AudioSource audioSource;
-    
     public GameObject winText;
     public GameObject lostText;
-    // private ScenesManager scenes;
+    private ScenesManager scenes;
 
     private void Awake()
     {
-        Instance = this; // Assign the singleton instance
+        if (Instance == null)
+        {
+            Instance = this; // Assign the singleton instance
+        }
+        else
+        {
+            Destroy(gameObject); // Destroy duplicate instances
+        }
         dialogueTrigger = FindObjectOfType<DialogueTrigger>();
         audioSource = GetComponent<AudioSource>();
+        scenes = FindObjectOfType<ScenesManager>();
+    }
+
+     private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null; // Reset Instance when destroyed to allow fresh instance in new scene
+        }
     }
 
     public void PauseGame()
@@ -46,43 +60,31 @@ public class GameManager : MonoBehaviour
 
     public void WinFight()
     {
-        fightStarted = false;
         if (!isGameWon && !isGameLost)
         {
             isGameWon = true;
             Debug.Log("You Won the Fight!");
         }
-        winText.SetActive(true);
-        Invoke("WinAnimation", 3f);
+
+        // dialogueTrigger.TriggerDialogue();
+    winText.SetActive(true);
+    // StartCoroutine(Loading());
+        Invoke("LevelSelection", 3.5f);
     }
 
     private void LevelSelection(){
-        SceneManager.LoadScene("LevelSelection");
+        scenes.LoadLevelSelection();
     }
 
     public void LoseFight()
     {
-        fightStarted = false;
         if (!isGameLost && !isGameWon)
         {
             isGameLost = true;
             Debug.Log("You Lost the Fight!");
         }
+
         lostText.SetActive(true);
-        Invoke("LostAnimation", 3f);
-    }
-
-    private void WinAnimation(){
-        GameObject.FindWithTag("Player").GetComponent<PlayerController>().PerformWin();
-        GameObject.FindWithTag("Enemy").SetActive(false);
-        Camera.main.gameObject.GetComponent<CameraController>().StartEllipseRotation();
-        Invoke("LevelSelection", 7f);
-    }
-
-    private void LostAnimation(){
-        GameObject.FindWithTag("Player").GetComponent<PlayerController>().PerformLost();
-        GameObject.FindWithTag("Enemy").SetActive(false);
-        Camera.main.gameObject.GetComponent<CameraController>().StartEllipseRotation();
     }
 
     public void ResetGameStates()
@@ -90,7 +92,6 @@ public class GameManager : MonoBehaviour
         isGamePaused = false;
         isGameWon = false;
         isGameLost = false;
-        fightStarted = false;
         Time.timeScale = 1f;  // Ensure time scale is reset
     }
 
@@ -98,13 +99,11 @@ public class GameManager : MonoBehaviour
         Camera.main.gameObject.GetComponent<CameraController>().StartShake(magnitude, duration);
     }
 
-    public void LoadMenu() {
-        ResetGameStates();
+    	public void LoadMenu() {
 		SceneManager.LoadScene("Menu");
 	}
-    public void LoadLevel1() {
-        ResetGameStates();
-		SceneManager.LoadScene("Level1");
+        public void LoadLevel1() {
+		SceneManager.LoadScene("FightingScene");
 	}
 
     public void PlayHitSound(){
@@ -114,14 +113,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PlayBlockSound(){
-        if(audioSource != null && blockSounds.Length>0){
-            audioSource.clip = blockSounds[Random.Range(0, blockSounds.Length)];
-            audioSource.Play();
-        }
-    }
-    public void Retry() {
-        ResetGameStates();
+        public void Retry() {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
+
+    //     public void LoadLevelSelection() {
+    // 	SceneManager.LoadScene("LevelSelection");
+    // }
+
+    //  IEnumerator Loading() {
+    //         yield return new WaitForSeconds(2.0f);
+    //         LoadLevelSelection();
+    //     }
 }
