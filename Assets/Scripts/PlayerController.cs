@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Movement")]
     public float movementSpeed = 2f;
     public float rotationSpeed = 30f;
-    public CharacterController characterController;
+    private CharacterController characterController;
     public Animator animator;
     public RuntimeAnimatorController winController;
     public RuntimeAnimatorController loseController;
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     void Awake(){
         enemy = GameObject.FindWithTag("Enemy").transform;
         fighter = GetComponent<Fighter>();
+        characterController = GetComponent<CharacterController>();
         opponentFighter = enemy.gameObject.GetComponent<Fighter>();
     }
 

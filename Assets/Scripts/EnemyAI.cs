@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour
     public float actionCooldown = 1.0f;
     public float walkSpeed = 2.0f;
 
-    public CharacterController characterController;
+    private CharacterController characterController;
     
     private float actionTimer;
     private bool isPlayerAttacking;
@@ -36,6 +36,7 @@ public class EnemyAI : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").transform;
         fighter = GetComponent<Fighter>();
+        characterController = GetComponent<CharacterController>();
         opponentFighter = player.gameObject.GetComponent<Fighter>();
         currentState = AIState.Idle;
         actionTimer = actionCooldown;
