@@ -1105,6 +1105,89 @@ Transform:
   - {fileID: 4571744395416522047}
   m_Father: {fileID: 7549905128867392856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2465729132860011812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 308327580957881565}
+  - component: {fileID: 4869969860882631754}
+  - component: {fileID: 8615102489662061025}
+  m_Layer: 0
+  m_Name: Dagger (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &308327580957881565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2465729132860011812}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.1830127, y: -0.6830127, z: 0.6830127, w: 0.1830127}
+  m_LocalPosition: {x: 0.188, y: -0.046, z: 0.165}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3695130469198045049}
+  m_LocalEulerAnglesHint: {x: 90, y: -60, z: 90}
+--- !u!23 &4869969860882631754
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2465729132860011812}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 56e79eb79cc0d8c808744552d4017f77, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &8615102489662061025
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2465729132860011812}
+  m_Mesh: {fileID: 8443918408634770226, guid: 02165b8c9e350f749ba899eb7f5b1f18, type: 3}
 --- !u!1 &2560628554630152778
 GameObject:
   m_ObjectHideFlags: 0
@@ -3268,7 +3351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4697199007621925914
 Transform:
   m_ObjectHideFlags: 0
@@ -3329,7 +3412,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4686849319519084627, guid: 02165b8c9e350f749ba899eb7f5b1f18, type: 3}
+  m_Mesh: {fileID: 4300000, guid: e2bc815f1d1ba52478f7c1bbd44ada2b, type: 2}
   m_Bones:
   - {fileID: 6808636712820003305}
   - {fileID: 2004944289158834751}
@@ -3829,6 +3912,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e7999302306934685b84506d334b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockProbabilty: 0.2
+  dodgeProbability: 0
+  attackProbability: 0.5
+  retreatProbability: 0.25
   animator: {fileID: 8269997347080547278}
   movementSpeed: 2
   rotationSpeed: 30
@@ -3887,8 +3974,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftFootTransform: {fileID: 5205845280657221426}
   rightFootTransform: {fileID: 3219689240255330680}
-  leftHandTransform: {fileID: 8157436158684843875}
-  rightHandTransform: {fileID: 3695130469198045049}
+  leftHandTransform: {fileID: 4991909996041295377}
+  rightHandTransform: {fileID: 308327580957881565}
   healthSlider: {fileID: 0}
   maxHealth: 100
   isDead: 0
@@ -3986,6 +4073,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 308327580957881565}
   - {fileID: 4239094775413847113}
   - {fileID: 1689772603506453869}
   - {fileID: 3856265478659208569}
@@ -4898,7 +4986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6808636712820003305
 Transform:
   m_ObjectHideFlags: 0

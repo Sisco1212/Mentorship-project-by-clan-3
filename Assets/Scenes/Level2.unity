@@ -475,7 +475,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
@@ -1741,6 +1741,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435235705}
   m_CullTransparentMesh: 1
+--- !u!4 &1482865622 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 308327580957881565, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
+  m_PrefabInstance: {fileID: 394287382100344672}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1524179150
 GameObject:
   m_ObjectHideFlags: 0
@@ -2581,18 +2586,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2121897760328120631, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
+      propertyPath: blockProbabilty
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121897760328120631, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
+      propertyPath: attackProbability
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121897760328120631, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
+      propertyPath: retreatProbability
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4951549631608578774, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1931098497}
     - target: {fileID: 4951549631608578774, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
-      propertyPath: leftHandTransform
-      value: 
-      objectReference: {fileID: 6309594722538340554}
-    - target: {fileID: 4951549631608578774, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
       propertyPath: rightHandTransform
       value: 
-      objectReference: {fileID: 3681302369407390404}
+      objectReference: {fileID: 1482865622}
     - target: {fileID: 6322967600349359456, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5
@@ -3097,11 +3110,6 @@ RectTransform:
   m_AnchoredPosition: {x: -80, y: 15}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &3681302369407390404 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2004944289158834751, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
-  m_PrefabInstance: {fileID: 394287382100344672}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3708657050671509136
 GameObject:
   m_ObjectHideFlags: 0
@@ -3647,11 +3655,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: edc40406f07f9cf4990807aa8b0fc368, type: 3}
   m_PrefabInstance: {fileID: 6283548918130653712}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6309594722538340554 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4991909996041295377, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
-  m_PrefabInstance: {fileID: 394287382100344672}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6345501105304722048
 PrefabInstance:

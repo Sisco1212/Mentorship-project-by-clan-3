@@ -3,6 +3,15 @@ using System.Collections.Generic;
 
 public class EnemyAI : MonoBehaviour
 {
+
+    [Header("Enemy Behavior")]
+    public float blockProbabilty = 0.8f;
+    public float dodgeProbability = 0f;
+    public float attackProbability = 0f;
+    public float retreatProbability = 0.7f;
+
+    [Header("Other")]
+
     [SerializeField]
     private Animator animator;
     private Transform player;
@@ -75,7 +84,7 @@ public class EnemyAI : MonoBehaviour
         // Determine AI action based on distance, energy, and player attack
         if (distanceToPlayer < retreatRange)
         {
-            if (Random.Range(0,100) < 70)
+            if (Random.Range(0f,101f)/100f < retreatProbability)
                 Retreat();
             else
                 Idle();
@@ -93,10 +102,10 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            float rad = Random.Range(0,100);
-            if (rad < 20)
+            float rad = Random.Range(0f,100f);
+            if (rad < 20f)
                 Idle();
-            else if(rad<=92)
+            else if(rad<=92f)
                 ApproachPlayer();
             else
                 Retreat();
@@ -113,15 +122,18 @@ public class EnemyAI : MonoBehaviour
 
     private void DefendOrRetreat()
     {
-        int actionChoice = Random.Range(0, 10);
+        float actionChoice = Random.Range(0f, 101f) / 100f;
         
-        if (actionChoice < 8)
+        if(actionChoice < blockProbabilty)
         {
             currentState = AIState.Defend;
             animator.SetTrigger("block");
             Debug.Log("Enemy defends!");
         }
-        else
+        else if(attackProbability>0f && actionChoice<attackProbability){
+            Attack();
+        }
+        else if(actionChoice < retreatProbability)
         {
             Retreat();
         }
@@ -171,7 +183,7 @@ public class EnemyAI : MonoBehaviour
     public void AttackEffect(string location){
         Transform hitLocation = null;
         if(distanceToPlayer <= attackRange){
-            player.gameObject.GetComponent<PlayerController>().PerformHurt(7.0f);
+            player.gameObject.GetComponent<PlayerController>().PerformHurt(3.5f);
         }
         if(fighter){
             switch(location){

@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
     public void AttackEffect(string location){
         Transform hitLocation = null;
         if(distanceToEnemy <= attackRange){
-            enemy.gameObject.GetComponent<EnemyAI>().PerformHurt(7.0f);
+            enemy.gameObject.GetComponent<EnemyAI>().PerformHurt(3.5f);
         }
         if(fighter){
             switch(location){
