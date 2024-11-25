@@ -29,11 +29,15 @@ public class PlayerController : MonoBehaviour
     public bool isPlayerBlocking = false;
     private float distanceToEnemy = 0f;
 
+    public AudioClip[] hitVoices = {};
+    private AudioSource audioSource;
+
     void Awake(){
         enemy = GameObject.FindWithTag("Enemy").transform;
         fighter = GetComponent<Fighter>();
         characterController = GetComponent<CharacterController>();
         opponentFighter = enemy.gameObject.GetComponent<Fighter>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -126,6 +130,10 @@ public class PlayerController : MonoBehaviour
             int damage = attackDamages;
             isPlayerAttacking = true;
             lastAttackTime = Time.time;
+        if(audioSource != null && hitVoices.Length>0){
+        audioSource.clip = hitVoices[Random.Range(0, hitVoices.Length)];
+        audioSource.Play();
+        }
         }
     }
 

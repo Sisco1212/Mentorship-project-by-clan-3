@@ -13,17 +13,21 @@ public class GameManager : MonoBehaviour
 
     public AudioClip[] hitSounds = {};
     public AudioClip[] blockSounds = {};
+    public AudioClip fightSound;
+    public AudioClip ko;
     private AudioSource audioSource;
     
     public GameObject winText;
     public GameObject lostText;
-    // private ScenesManager scenes;
 
+    public int nextSceneLoad;
+   
     private void Awake()
     {
         Instance = this; // Assign the singleton instance
         dialogueTrigger = FindObjectOfType<DialogueTrigger>();
         audioSource = GetComponent<AudioSource>();
+        nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
     }
 
     public void PauseGame()
@@ -54,10 +58,16 @@ public class GameManager : MonoBehaviour
         }
         winText.SetActive(true);
         Invoke("WinAnimation", 3f);
+        PlayKOSound();
     }
 
     private void LevelSelection(){
         SceneManager.LoadScene("LevelSelection");
+
+        if (nextSceneLoad > PlayerPrefs.GetInt("levelAt"))
+        {
+            PlayerPrefs.SetInt("levelAt", nextSceneLoad);
+        }
     }
 
     public void LoseFight()
@@ -70,13 +80,14 @@ public class GameManager : MonoBehaviour
         }
         lostText.SetActive(true);
         Invoke("LostAnimation", 3f);
+        PlayKOSound();
     }
 
     private void WinAnimation(){
         GameObject.FindWithTag("Player").GetComponent<PlayerController>().PerformWin();
         GameObject.FindWithTag("Enemy").SetActive(false);
         Camera.main.gameObject.GetComponent<CameraController>().StartEllipseRotation();
-        Invoke("LevelSelection", 7f);
+        Invoke("LevelSelection", 8f);
     }
 
     private void LostAnimation(){
@@ -109,8 +120,22 @@ public class GameManager : MonoBehaviour
 
     public void PlayHitSound(){
         if(audioSource != null && hitSounds.Length>0){
-            audioSource.clip = hitSounds[Random.Range(0, hitSounds.Length)];
-            audioSource.Play();
+        audioSource.clip = hitSounds[Random.Range(0, hitSounds.Length)];
+        audioSource.Play();
+        }
+    }
+
+    public void PlayFightSound() {
+        if(audioSource != null){
+        audioSource.clip = fightSound;
+        audioSource.PlayOneShot(fightSound);
+        }
+    }
+   
+    public void PlayKOSound() {
+        if(audioSource != null){
+        audioSource.clip = ko;
+        audioSource.PlayOneShot(ko);
         }
     }
 
