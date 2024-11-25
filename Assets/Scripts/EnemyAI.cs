@@ -39,6 +39,9 @@ public class EnemyAI : MonoBehaviour
     private ParticleSystem[] attackEffects = {};
     private Fighter fighter;
     private Fighter opponentFighter;
+
+    public AudioClip[] hitVoices = {};
+    private AudioSource audioSource;
     
 
     void Start()
@@ -49,6 +52,7 @@ public class EnemyAI : MonoBehaviour
         opponentFighter = player.gameObject.GetComponent<Fighter>();
         currentState = AIState.Idle;
         actionTimer = actionCooldown;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -118,6 +122,10 @@ public class EnemyAI : MonoBehaviour
         currentState = AIState.Attack;
         animator.SetTrigger(attackTriggers[Random.Range(0, attackTriggers.Count)]);
         Debug.Log("Enemy attacks!");
+        if(audioSource != null && hitVoices.Length>0){
+        audioSource.clip = hitVoices[Random.Range(0, hitVoices.Length)];
+        audioSource.Play();
+        }
     }
 
     private void DefendOrRetreat()
