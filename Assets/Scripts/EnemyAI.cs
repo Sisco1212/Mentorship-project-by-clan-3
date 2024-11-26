@@ -126,6 +126,7 @@ public class EnemyAI : MonoBehaviour
         audioSource.clip = hitVoices[Random.Range(0, hitVoices.Length)];
         audioSource.Play();
         }
+
     }
 
     private void DefendOrRetreat()
