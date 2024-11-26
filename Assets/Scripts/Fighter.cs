@@ -9,6 +9,7 @@ public class Fighter : MonoBehaviour
     public Transform rightFootTransform;
     public Transform leftHandTransform;
     public Transform rightHandTransform;
+    public Transform swordTransform;
 
     public Slider healthSlider;
     public float maxHealth = 100f;

@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     private float distanceToEnemy = 0f;
 
     public AudioClip[] hitVoices = {};
+    public AudioClip unSheatheSwordSound;
+    public AudioClip sheatheSwordSound;
     private AudioSource audioSource;
 
     void Awake(){
@@ -72,6 +74,8 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.PlayHitSound(); 
             GameManager.Instance.ShakeCamera();
             fighter.TakeDamage(damageAmount);
+            // GetComponent<Animator>().SetBool("SwordPowerup", false);
+            FindObjectOfType<Powerup>().EndSwordPowerup();
         }
         else{
             GameManager.Instance.PlayBlockSound();
@@ -162,6 +166,37 @@ public class PlayerController : MonoBehaviour
         }
         if(hitLocation != null){
             Instantiate(attackEffects[Random.Range(0, attackEffects.Length)], hitLocation);
+        }
+    }
+    
+    public void SwordAttackEffect(){
+        Transform hitLocation = null;
+        if(distanceToEnemy <= attackRange){
+            enemy.gameObject.GetComponent<EnemyAI>().PerformHurt(5f);
+        }
+        if(fighter){
+        hitLocation = fighter.swordTransform;            
+        if(hitLocation != null){
+            Instantiate(attackEffects[Random.Range(0, attackEffects.Length)], hitLocation);
+        }    
+        }
+        if(audioSource != null && hitVoices.Length>0){
+        audioSource.clip = hitVoices[Random.Range(0, hitVoices.Length)];
+        audioSource.Play();
+        }       
+    }
+
+    public void PlayUnsheatheSwordSound() {
+        if(audioSource != null){
+        audioSource.clip = unSheatheSwordSound;
+        audioSource.Play();
+        }
+    }
+
+    public void PlaySheatheSwordSound() {
+        if(audioSource != null){
+        audioSource.clip = sheatheSwordSound;
+        audioSource.Play();
         }
     }
 }
