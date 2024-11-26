@@ -1194,7 +1194,6 @@ RectTransform:
   - {fileID: 1155784717}
   - {fileID: 334182643}
   - {fileID: 312280913}
-  - {fileID: 2027595688}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1566,6 +1565,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1168494102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753405549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 261aeab09ebe67548a6a965bef04262f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 1168494092}
+  sheathedSword: {fileID: 65694950}
+  unSheathedSword: {fileID: 1694875631}
 --- !u!1 &1346575195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,6 +2175,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 61534602}
+  - {fileID: 2027595688}
   - {fileID: 1826794748}
   - {fileID: 1931098496}
   m_Father: {fileID: 658107123}
@@ -2903,13 +2918,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027595687}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 206328480}
-  m_Father: {fileID: 658107123}
+  m_Father: {fileID: 1589976968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2962,7 +2977,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2027595692}
         m_TargetAssemblyTypeName: Powerup, Assembly-CSharp
-        m_MethodName: StartSwordPowerup
+        m_MethodName: SwordPowerSlash
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3159,6 +3174,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2121897760328120631, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2121897760328120631, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
       propertyPath: blockProbabilty
       value: 0.35
@@ -4333,6 +4352,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4869232321887818139, guid: ee113d1906f9bea468cd330c490625fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1168494097}
+    - targetCorrespondingSourceObject: {fileID: 4869232321887818139, guid: ee113d1906f9bea468cd330c490625fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1168494102}
   m_SourcePrefab: {fileID: 100100000, guid: ee113d1906f9bea468cd330c490625fd, type: 3}
 --- !u!222 &9036217604765613999
 CanvasRenderer:
