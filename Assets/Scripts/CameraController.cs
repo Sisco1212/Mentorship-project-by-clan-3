@@ -113,18 +113,26 @@ public class CameraController : MonoBehaviour
         }
         originalPosition = transform.position;
         isShaking = true;
+        
         while (elapsed < duration)
         {
+            if (Time.timeScale == 0f) 
+            {
+                yield return new WaitUntil(() => Time.timeScale > 0f);
+            }
+
             float x = Random.Range(-1f, 1f) * magnitude;
             float y = Random.Range(-1f, 1f) * magnitude;
 
             transform.localPosition = new Vector3(originalPosition.x + x, originalPosition.y + y, originalPosition.z);
 
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
 
             yield return null;
         }
+
         transform.localPosition = originalPosition;
         isShaking = false;
     }
+
 }

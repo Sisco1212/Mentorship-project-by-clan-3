@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public ParticleSystem[] blockEffects = {};
+
     private bool isGamePaused = false;
     private bool isGameWon = false;
     private bool isGameLost = false;
