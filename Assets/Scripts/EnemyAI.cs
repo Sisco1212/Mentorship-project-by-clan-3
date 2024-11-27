@@ -163,9 +163,6 @@ public class EnemyAI : MonoBehaviour
             fighter.TakeDamage(damageAmount);
         }
         else{
-            if(GameManager.Instance.blockEffects.Length>0){
-                Instantiate(GameManager.Instance.blockEffects[Random.Range(0, GameManager.Instance.blockEffects.Length)], fighter.transform);
-            }
             GameManager.Instance.PlayBlockSound();
         }
         //PushBackEffect();

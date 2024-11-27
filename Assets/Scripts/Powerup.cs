@@ -8,18 +8,24 @@ public class Powerup : MonoBehaviour
     public GameObject sheathedSword;
     public GameObject unSheathedSword;
 
-    public void SwordPowerSlash(){
-        playerAnimator.SetTrigger("SwordPowerUp");
-    }
+    // Transform hitLocation = null;
+        
+    //     if(distanceToEnemy <= attackRange){
+    //         enemy.gameObject.GetComponent<EnemyAI>().PerformHurt(3.5f);
+    //     }
+
 
     public void StartSwordPowerup()
     {
+        playerAnimator.SetBool("SwordPowerup", true);
         sheathedSword.SetActive(false);
         unSheathedSword.SetActive(true);
+        Invoke("EndSwordPowerup", 2f);
     }
 
     public void EndSwordPowerup()
     {
+        playerAnimator.SetBool("SwordPowerup", false);
         sheathedSword.SetActive(true);
         unSheathedSword.SetActive(false);
     }
