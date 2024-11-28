@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class EnemyAI : MonoBehaviour
@@ -42,6 +43,13 @@ public class EnemyAI : MonoBehaviour
 
     public AudioClip[] hitVoices = {};
     private AudioSource audioSource;
+
+    public float powerupFull = 150.0f;
+    public float powerupCharge = 0f;
+    [Header("Combo Bar")]
+    [SerializeField] private Slider comboBar;
+
+    public Button powerupButton;
     
 
     void Start()
@@ -81,6 +89,11 @@ public class EnemyAI : MonoBehaviour
             MakeDecision();
             actionTimer = Random.Range(currentState==AIState.Attack ? 0.5f : 0.7f, currentState==AIState.Attack ? 1.2f : 2.5f);
         }
+
+        if (powerupCharge == powerupFull)
+            {
+                powerupButton.interactable = true;
+            }
     }
 
     private void MakeDecision()
@@ -161,6 +174,8 @@ public class EnemyAI : MonoBehaviour
             GameManager.Instance.PlayHitSound();
             GameManager.Instance.ShakeCamera();
             fighter.TakeDamage(damageAmount);
+            powerupCharge+=10.0f;
+            comboBar.value = powerupCharge;
         }
         else{
             if(GameManager.Instance.blockEffects.Length>0){

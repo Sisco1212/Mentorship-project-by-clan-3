@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip unSheatheSwordSound;
     public AudioClip sheatheSwordSound;
     private AudioSource audioSource;
+
 
     void Awake(){
         enemy = GameObject.FindWithTag("Enemy").transform;
@@ -175,7 +177,9 @@ public class PlayerController : MonoBehaviour
     public void SwordAttackEffect(){
         Transform hitLocation = null;
         if(distanceToEnemy <= attackRange){
-            enemy.gameObject.GetComponent<EnemyAI>().PerformHurt(5f);
+            enemy.gameObject.GetComponent<EnemyAI>().PerformHurt(5.5f);
+            enemy.gameObject.GetComponent<EnemyAI>().powerupCharge = 0;
+            // enemy.gameObject.GetComponent<EnemyAI>().powerupButton.interactable = false;
         }
         if(fighter){
         hitLocation = fighter.swordTransform;            
