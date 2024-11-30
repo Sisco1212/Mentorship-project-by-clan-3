@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Other")]
 
     [SerializeField]
-    private Animator animator;
+    public Animator animator;
     private Transform player;
     
     // AI properties
@@ -44,7 +44,7 @@ public class EnemyAI : MonoBehaviour
     public AudioClip[] hitVoices = {};
     private AudioSource audioSource;
 
-    public float powerupFull = 150.0f;
+    public float powerupFull = 100.0f;
     public float powerupCharge = 0f;
     [Header("Combo Bar")]
     [SerializeField] private Slider comboBar;
@@ -168,9 +168,9 @@ public class EnemyAI : MonoBehaviour
         characterController.Move(slideVal);
     }
 
-    public void PerformHurt(float damageAmount){
+    public void PerformHurt(float damageAmount, string hurtAnimation){
         if(currentState != AIState.Defend){
-            animator.SetTrigger("hurt");
+            animator.SetTrigger(hurtAnimation);
             GameManager.Instance.PlayHitSound();
             GameManager.Instance.ShakeCamera();
             fighter.TakeDamage(damageAmount);
@@ -200,7 +200,7 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("Enemy retreats.");
     }
 
-    private void Idle()
+    public void Idle()
     {
         currentState = AIState.Idle;
         animator.SetTrigger("idle");

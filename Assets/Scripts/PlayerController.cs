@@ -34,7 +34,12 @@ public class PlayerController : MonoBehaviour
     public AudioClip unSheatheSwordSound;
     public AudioClip sheatheSwordSound;
     private AudioSource audioSource;
+    
+    public AudioClip[] swordSounds;
+    public AudioClip emptySwordSound;
+    public AudioSource swordAudioSource;
 
+    public ParticleSystem bloodEffects;
 
     void Awake(){
         enemy = GameObject.FindWithTag("Enemy").transform;
@@ -149,7 +154,7 @@ public class PlayerController : MonoBehaviour
     public void AttackEffect(string location){
         Transform hitLocation = null;
         if(distanceToEnemy <= attackRange){
-            enemy.gameObject.GetComponent<EnemyAI>().PerformHurt(3.5f);
+            enemy.gameObject.GetComponent<EnemyAI>().PerformHurt(3.5f, "hurt");
         }
         if(fighter){
             switch(location){
@@ -177,10 +182,17 @@ public class PlayerController : MonoBehaviour
     public void SwordAttackEffect(){
         Transform hitLocation = null;
         if(distanceToEnemy <= attackRange){
-            enemy.gameObject.GetComponent<EnemyAI>().PerformHurt(5.5f);
+            enemy.gameObject.GetComponent<EnemyAI>().PerformHurt(5.5f, "SwordHurt");
             enemy.gameObject.GetComponent<EnemyAI>().powerupCharge = 0;
+            bloodEffects.Play();
             // enemy.gameObject.GetComponent<EnemyAI>().powerupButton.interactable = false;
+            PlaySwordSounds();
         }
+
+        else {
+            PlayEmptySwordSound();
+        }
+
         if(fighter){
         hitLocation = fighter.swordTransform;            
         if(hitLocation != null){
@@ -204,6 +216,21 @@ public class PlayerController : MonoBehaviour
         if(audioSource != null){
         audioSource.clip = sheatheSwordSound;
         audioSource.Play();
+        }
+    }
+
+    public void PlaySwordSounds() {
+        if (swordAudioSource != null && swordSounds.Length > 0)
+        {
+            swordAudioSource.clip = swordSounds[Random.Range(0, swordSounds.Length)];
+            swordAudioSource.Play();
+        }
+    }
+    public void PlayEmptySwordSound() {
+        if (swordAudioSource != null && swordSounds.Length > 0)
+        {
+            swordAudioSource.clip = emptySwordSound;
+            swordAudioSource.Play();
         }
     }
 }

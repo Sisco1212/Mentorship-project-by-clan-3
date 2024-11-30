@@ -11,7 +11,6 @@ public class Powerup : MonoBehaviour
     private Button powerupButton;
     private EnemyAI enemyAIScript;
 
-
     void Start ()
     {
         powerupButton = GetComponent<Button>();
@@ -23,6 +22,7 @@ public class Powerup : MonoBehaviour
     public void SwordPowerSlash(){
         playerAnimator.SetTrigger("SwordPowerUp");
         enemyAIScript.powerupCharge = 0;
+        enemyAIScript.Idle();
         powerupButton.interactable = false;
     }
 
@@ -38,7 +38,4 @@ public class Powerup : MonoBehaviour
         unSheathedSword.SetActive(false);
     }
 
-    // private void Update() {
-    //     powerupButton.interactable = false;
-    // }
 }
