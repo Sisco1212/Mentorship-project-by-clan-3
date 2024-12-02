@@ -15005,7 +15005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4869232321887818139, guid: ee113d1906f9bea468cd330c490625fd, type: 3}
       propertyPath: m_Name
-      value: Player With Sword
+      value: Player With Gun and Sword
       objectReference: {fileID: 0}
     - target: {fileID: 6332573263898895782, guid: ee113d1906f9bea468cd330c490625fd, type: 3}
       propertyPath: swordTransform
@@ -15024,6 +15024,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4869232321887818139, guid: ee113d1906f9bea468cd330c490625fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5059317510973062772}
+    - targetCorrespondingSourceObject: {fileID: 4869232321887818139, guid: ee113d1906f9bea468cd330c490625fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7944815448229304510}
   m_SourcePrefab: {fileID: 100100000, guid: ee113d1906f9bea468cd330c490625fd, type: 3}
 --- !u!1 &5504780634898570940 stripped
 GameObject:
@@ -15126,6 +15129,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7944815448229304510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5504780634898570940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e501c5820fae04fa71683408dd89f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMoveLeft: 1
+  canMoveRight: 1
+  leftPos: -5
+  rightPos: 5
 --- !u!4 &6035608032282881600 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6644179076801782119, guid: ee113d1906f9bea468cd330c490625fd, type: 3}

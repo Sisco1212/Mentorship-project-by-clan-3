@@ -3855,6 +3855,7 @@ GameObject:
   - component: {fileID: 2121897760328120631}
   - component: {fileID: 5659052244285619257}
   - component: {fileID: 4951549631608578774}
+  - component: {fileID: -5998635269310994846}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -3934,6 +3935,11 @@ MonoBehaviour:
   - {fileID: 5024009746357069192, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   - {fileID: 2955623459812423941, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
   - {fileID: 8443315704496310908, guid: 6ef35fa36e3a65043b2d800600204bdd, type: 3}
+  hitVoices: []
+  powerupFull: 150
+  powerupCharge: 0
+  comboBar: {fileID: 0}
+  powerupButton: {fileID: 0}
 --- !u!143 &5659052244285619257
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3976,10 +3982,27 @@ MonoBehaviour:
   rightFootTransform: {fileID: 3219689240255330680}
   leftHandTransform: {fileID: 4991909996041295377}
   rightHandTransform: {fileID: 308327580957881565}
+  swordTransform: {fileID: 0}
   healthSlider: {fileID: 0}
   maxHealth: 100
   isDead: 0
   gravity: 9.8
+--- !u!114 &-5998635269310994846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7238685806696989648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e501c5820fae04fa71683408dd89f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMoveLeft: 1
+  canMoveRight: 1
+  leftPos: -5
+  rightPos: 5
 --- !u!1 &7248092186309097968
 GameObject:
   m_ObjectHideFlags: 0

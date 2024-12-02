@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private Fighter fighter;
     private Fighter opponentFighter;
 
+    private MotionConstraints motionConstraints;
+
     [Header("Other")]
     private Transform enemy;
     public float attackRange = 1.5f;
@@ -44,6 +46,7 @@ public class PlayerController : MonoBehaviour
     void Awake(){
         enemy = GameObject.FindWithTag("Enemy").transform;
         fighter = GetComponent<Fighter>();
+        motionConstraints = GetComponent<MotionConstraints>();
         characterController = GetComponent<CharacterController>();
         opponentFighter = enemy.gameObject.GetComponent<Fighter>();
         audioSource = GetComponent<AudioSource>();
@@ -134,7 +137,9 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("WalkingBack", false);
         }
 
-        characterController.Move(movement * movementSpeed * Time.deltaTime); 
+        if((movement.x<0 && motionConstraints.canMoveLeft) || (movement.x>0 && motionConstraints.canMoveRight)){
+            characterController.Move(movement * movementSpeed * Time.deltaTime);
+        }
 
     }
 

@@ -40,6 +40,7 @@ public class EnemyAI : MonoBehaviour
     private ParticleSystem[] attackEffects = {};
     private Fighter fighter;
     private Fighter opponentFighter;
+    private MotionConstraints motionConstraints;
 
     public AudioClip[] hitVoices = {};
     private AudioSource audioSource;
@@ -56,6 +57,7 @@ public class EnemyAI : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").transform;
         fighter = GetComponent<Fighter>();
+        motionConstraints = GetComponent<MotionConstraints>();
         characterController = GetComponent<CharacterController>();
         opponentFighter = player.gameObject.GetComponent<Fighter>();
         currentState = AIState.Idle;
@@ -70,15 +72,20 @@ public class EnemyAI : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(new Vector3((player.position-transform.position).x, 0f, 0f));
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         actionTimer -= Time.deltaTime;
+        Vector3 movement;
 
         switch(currentState){
             case AIState.Approach:
-                characterController.Move((new Vector3((player.position-transform.position).x, 0f, 0f).normalized) * movementSpeed * Time.deltaTime);
+                movement = new Vector3((player.position-transform.position).x, 0f, 0f).normalized;
+                characterController.Move(movement * movementSpeed * Time.deltaTime);
                 if(distanceToPlayer <= attackRange)
                     Idle();
                 break;
             case AIState.Retreat:
-                characterController.Move((new Vector3((transform.position-player.position).x, 0f, 0f).normalized) * movementSpeed * Time.deltaTime);
+                movement = new Vector3((transform.position-player.position).x, 0f, 0f).normalized;
+                if((movement.x<0 && motionConstraints.canMoveLeft) || (movement.x>0 && motionConstraints.canMoveRight)){
+                    characterController.Move(movement * movementSpeed * Time.deltaTime);
+                }
                 break;
             default:
                 break;
