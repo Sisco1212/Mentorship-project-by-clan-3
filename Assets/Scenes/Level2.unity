@@ -430,7 +430,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 150
+  m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -3355,7 +3355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2121897760328120631, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
       propertyPath: powerupFull
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2121897760328120631, guid: 7e8dff23b08e67c4abd90528dbee63cd, type: 3}
       propertyPath: powerupButton
@@ -4132,8 +4132,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5504780634898570940, guid: 41e3d755e8b83d04b8e0a9464aa46b70, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6095406119502999440}
   m_SourcePrefab: {fileID: 100100000, guid: 41e3d755e8b83d04b8e0a9464aa46b70, type: 3}
+--- !u!1 &6095406119502999439 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5504780634898570940, guid: 41e3d755e8b83d04b8e0a9464aa46b70, type: 3}
+  m_PrefabInstance: {fileID: 6095406119502999438}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6095406119502999440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6095406119502999439}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 261aeab09ebe67548a6a965bef04262f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 1168494092}
+  sheathedSword: {fileID: 65694950}
+  unSheathedSword: {fileID: 1694875631}
 --- !u!222 &6903281856066514166
 CanvasRenderer:
   m_ObjectHideFlags: 0

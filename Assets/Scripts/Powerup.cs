@@ -22,6 +22,7 @@ public class Powerup : MonoBehaviour
     public void SwordPowerSlash(){
         playerAnimator.SetTrigger("SwordPowerUp");
         enemyAIScript.powerupCharge = 0;
+        enemyAIScript.comboBar.value = 0;
         enemyAIScript.Idle();
         powerupButton.interactable = false;
     }
