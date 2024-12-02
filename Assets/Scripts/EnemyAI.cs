@@ -47,7 +47,7 @@ public class EnemyAI : MonoBehaviour
     public float powerupFull = 100.0f;
     public float powerupCharge = 0f;
     [Header("Combo Bar")]
-    [SerializeField] private Slider comboBar;
+    public Slider comboBar;
 
     public Button powerupButton;
     
