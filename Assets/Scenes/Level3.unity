@@ -2214,7 +2214,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 128.3, y: 0}
-  m_SizeDelta: {x: 180, y: 150}
+  m_SizeDelta: {x: 180, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007922206
 MonoBehaviour:
@@ -2422,7 +2422,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -30}
+  m_AnchoredPosition: {x: 0, y: -40}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1060778061
@@ -2976,39 +2976,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     names:
-    - Serah
+    - Eclipse
     - Ashen
-    - Serah
+    - Eclipse
     - Ashen
-    - Serah
+    - Eclipse
     - Ashen
-    - Serah
     images:
-    - {fileID: 21300000, guid: 1eb619f541951e540afcddb053f4b959, type: 3}
+    - {fileID: 21300000, guid: 5e0e6a77bcf4494459685b34f9e89409, type: 3}
     - {fileID: 21300000, guid: efaf5630ae8738e48aada9deb0d877d5, type: 3}
-    - {fileID: 21300000, guid: 1eb619f541951e540afcddb053f4b959, type: 3}
+    - {fileID: 21300000, guid: 5e0e6a77bcf4494459685b34f9e89409, type: 3}
     - {fileID: 21300000, guid: efaf5630ae8738e48aada9deb0d877d5, type: 3}
-    - {fileID: 21300000, guid: 1eb619f541951e540afcddb053f4b959, type: 3}
+    - {fileID: 21300000, guid: 5e0e6a77bcf4494459685b34f9e89409, type: 3}
     - {fileID: 21300000, guid: efaf5630ae8738e48aada9deb0d877d5, type: 3}
-    - {fileID: 21300000, guid: 1eb619f541951e540afcddb053f4b959, type: 3}
     sentences:
-    - So, you've come this far, wastelander. I see the fire in your eyes, that same
-      fire burned in mine once. But fire alone won't save you.
-    - I've fought through too much to stop now. If you're here to stop me, you'll
-      fail, just like the others.
-    - Stop you? No, I'm here to see if you deserve what you're chasing. Sanctuary
-      isn't what you think it is. It is a glided trap, built on the blood and suffering
-      of fools who belived in it's lies. I should know, I helped build it.
-    - If you know the truth, then why are you standing in my way? Let me pass, or
-      fight me. I don't have time for riddles.
-    - You think you can save you people by walking into that fortress? I thought
-      the same once. Sanctuary doesn't save, it enslaves. But you're too blind to
-      see it... yet.
-    - Maybe. Or maybe I see that you're afraid too. If Sanctuary is so dangerous,
-      then why not fight with me instead of against me?
-    - Because the Crucible demands strength, and I need to know if you have what
-      it takes. Show me, Ashen. Prove to me you're more than just another desperate
-      soul chasing a dream.
+    - 'Subject identified: Ashen
+
+      Threat level: High
+
+      Directive: Terminate'
+    - So this is Sanctuary's final guardian? A lifeless machine, programmed to destroy
+      anyone who gets too close to the truth.
+    - Sanctuary's integrity must be preserved. Organic threats disrupt balance. You
+      will be neutralized.
+    - You think you can scare me with your cold efficiency? I've faced enemies who
+      fought for survival, for ideals, for revenge. But you? You're just a tool,
+      a pawn for the ones pulling the strings.
+    - 'Subject exhibits defiance
+
+      Outcome: Irrelevant resistance is futile.
+      Engage.'
+    - Resistance is all I've ever known. Let's see if your steel heart can withstand
+      my resolve.
 --- !u!1 &1385094025
 GameObject:
   m_ObjectHideFlags: 0
@@ -4528,6 +4527,10 @@ PrefabInstance:
       propertyPath: comboBar
       value: 
       objectReference: {fileID: 1073418240}
+    - target: {fileID: 8461131185359612445, guid: 2657605bd0f510e498c22a40e240407d, type: 3}
+      propertyPath: powerupFull
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8461131185359612445, guid: 2657605bd0f510e498c22a40e240407d, type: 3}
       propertyPath: powerupButton
       value: 
