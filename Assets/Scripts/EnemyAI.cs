@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     public float dodgeProbability = 0f;
     public float attackProbability = 0f;
     public float retreatProbability = 0.7f;
+    public float specialAttackProbability = 0.11f;
 
     [Header("Other")]
 
@@ -22,6 +23,7 @@ public class EnemyAI : MonoBehaviour
     public float rotationSpeed = 30f;
     public float attackRange = 1.5f;
     public float retreatRange = 2.5f;
+    public float specialAttackRange = 2f;
     public float actionCooldown = 1.0f;
     public float walkSpeed = 2.0f;
 
@@ -38,13 +40,16 @@ public class EnemyAI : MonoBehaviour
     private List<string> attackTriggers = new List<string>();
     [SerializeField]
     private ParticleSystem[] attackEffects = {};
+    [SerializeField] private ParticleSystem specialAttack;
     private Fighter fighter;
     private Fighter opponentFighter;
     private MotionConstraints motionConstraints;
 
     public AudioClip[] hitVoices = {};
     private AudioSource audioSource;
+    private bool canDecide = true;
 
+    public bool hasSpecialAttack = false;
     public float powerupFull = 100.0f;
     public float powerupCharge = 0f;
     [Header("Combo Bar")]
@@ -91,7 +96,7 @@ public class EnemyAI : MonoBehaviour
                 break;
         }
 
-        if (actionTimer <= 0)
+        if (actionTimer <= 0 && canDecide)
         {
             MakeDecision();
             actionTimer = Random.Range(currentState==AIState.Attack ? 0.5f : 0.7f, currentState==AIState.Attack ? 1.2f : 2.5f);
@@ -103,10 +108,37 @@ public class EnemyAI : MonoBehaviour
             }
     }
 
+    public void BeInactiveFor(float duration){
+        canDecide = false;
+        Invoke("ActivateDecision", duration);
+    }
+
+    private void ActivateDecision(){
+        canDecide = true;
+    }
+    
+    public void SpecialAttackEffect(){
+        if(specialAttack){
+            Instantiate(specialAttack, fighter.rightHandTransform.position, specialAttack.transform.rotation);
+        }
+        player.gameObject.GetComponent<PlayerController>().PerformHurt(15f);
+    }
     private void MakeDecision()
     {
+
         // Determine AI action based on distance, energy, and player attack
-        if (distanceToPlayer < retreatRange)
+        if(hasSpecialAttack && Random.Range(0f,101f)/100f < specialAttackProbability){
+            if(distanceToPlayer>specialAttackRange){
+                currentState = AIState.Attack;
+                animator.SetTrigger("sa");
+                BeInactiveFor(0.8f);
+            }
+            else{
+                Retreat();
+            }
+            
+        }
+        else if (distanceToPlayer < retreatRange)
         {
             if (Random.Range(0f,101f)/100f < retreatProbability)
                 Retreat();

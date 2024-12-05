@@ -4536,6 +4536,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1513938570}
     - target: {fileID: 8461131185359612445, guid: 2657605bd0f510e498c22a40e240407d, type: 3}
+      propertyPath: specialAttack
+      value: 
+      objectReference: {fileID: 2439849051394042327, guid: cd6ae5fdf3dbbd3429d994a72d1d9b0d, type: 3}
+    - target: {fileID: 8461131185359612445, guid: 2657605bd0f510e498c22a40e240407d, type: 3}
+      propertyPath: hasSpecialAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461131185359612445, guid: 2657605bd0f510e498c22a40e240407d, type: 3}
+      propertyPath: retreatProbability
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461131185359612445, guid: 2657605bd0f510e498c22a40e240407d, type: 3}
       propertyPath: hitVoices.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -4555,6 +4567,18 @@ PrefabInstance:
       propertyPath: hitVoices.Array.data[3]
       value: 
       objectReference: {fileID: 8300000, guid: a5395256eccc0e34292c3c2c440b87fe, type: 3}
+    - target: {fileID: 8461131185359612445, guid: 2657605bd0f510e498c22a40e240407d, type: 3}
+      propertyPath: specialAttackProbability
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461131185359612445, guid: 2657605bd0f510e498c22a40e240407d, type: 3}
+      propertyPath: attackTriggers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461131185359612445, guid: 2657605bd0f510e498c22a40e240407d, type: 3}
+      propertyPath: attackTriggers.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
