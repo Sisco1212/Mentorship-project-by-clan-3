@@ -100,8 +100,9 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
-        GameManager.Instance.fightStarted = true;
-        GameManager.Instance.PlayFightSound();
+        // GameManager.Instance.fightStarted = true;
+        // GameManager.Instance.PlayFightSound();
+        GameManager.Instance.Tutorials();
         Debug.Log("End of conversation");
     }
 

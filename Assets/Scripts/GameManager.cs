@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     public GameObject lostText;
 
     public int nextSceneLoad;
+
+    public Animator rewardScreenAnimator;
+    public GameObject tutorialPanel;
    
     private void Awake()
     {
@@ -31,6 +34,14 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
     }
+
+    // private void Update() 
+    // {
+    //     if (fightStarted)
+    //     {
+            
+    //     }
+    // }
 
     public void PauseGame()
     {
@@ -89,7 +100,7 @@ public class GameManager : MonoBehaviour
         GameObject.FindWithTag("Player").GetComponent<PlayerController>().PerformWin();
         GameObject.FindWithTag("Enemy").SetActive(false);
         Camera.main.gameObject.GetComponent<CameraController>().StartEllipseRotation();
-        Invoke("LevelSelection", 8f);
+        Invoke("ShowRewardScreen", 8f);
     }
 
     private void LostAnimation(){
@@ -151,4 +162,29 @@ public class GameManager : MonoBehaviour
         ResetGameStates();
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
+
+    public void ShowRewardScreen() {
+        rewardScreenAnimator.SetBool("IsOpen", true);
+    }
+    public void HideRewardScreen() {
+        Invoke("LevelSelection", 2f);
+    }
+
+    public void Tutorials()
+    {
+        tutorialPanel.SetActive(true);
+     }
+
+    public void DisplayNextTutorial(GameObject show) {
+        show.SetActive(true);
+    }
+    public void HideCurrentTutorial(GameObject hide) {
+        hide.SetActive(false);
+    }
+
+    public void StartGame() 
+    {
+        fightStarted = true;
+        PlayFightSound();
+    }
 }

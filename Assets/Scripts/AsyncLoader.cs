@@ -14,21 +14,22 @@ public class AsyncLoader : MonoBehaviour
     [Header("Slider")]
     [SerializeField] private Slider loadingSlider;
 
-    public void LoadLevelBtn(string levelToLoad){
+    public void LoadLevelBtn(){
         mainMenu.SetActive(false);
         loadingScreen.SetActive(true);
+        FindObjectOfType<NarrationTrigger>().TriggerNarration();
 
-        StartCoroutine(LoadLevelASync(levelToLoad));
+        // StartCoroutine(LoadLevelASync(levelToLoad));
     }
 
-    IEnumerator LoadLevelASync(string levelToLoad)
+    public IEnumerator LoadLevelASync(string levelToLoad)
     {
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelToLoad);
         
         while (!loadOperation.isDone)
         {
-            float progressValue = Mathf.Clamp01(loadOperation.progress / 0.9f);
-            loadingSlider.value =progressValue;
+            // float progressValue = Mathf.Clamp01(loadOperation.progress / 0.9f);
+            // loadingSlider.value =progressValue;
             yield return null;
         }
     }
