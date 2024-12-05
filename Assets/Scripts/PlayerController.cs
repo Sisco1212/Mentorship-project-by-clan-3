@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
 
     public ParticleSystem bloodEffects;
 
+    // public AudioSource gunSounds;
+    public AudioClip loadGunSound;
+
     void Awake(){
         enemy = GameObject.FindWithTag("Enemy").transform;
         fighter = GetComponent<Fighter>();
@@ -211,16 +214,16 @@ public class PlayerController : MonoBehaviour
     }
 
     public void PlayUnsheatheSwordSound() {
-        if(audioSource != null){
-        audioSource.clip = unSheatheSwordSound;
-        audioSource.Play();
+        if(swordAudioSource != null){
+        swordAudioSource.clip = unSheatheSwordSound;
+        swordAudioSource.Play();
         }
     }
 
     public void PlaySheatheSwordSound() {
-        if(audioSource != null){
-        audioSource.clip = sheatheSwordSound;
-        audioSource.Play();
+        if(swordAudioSource != null){
+        swordAudioSource.clip = sheatheSwordSound;
+        swordAudioSource.Play();
         }
     }
 
@@ -236,6 +239,15 @@ public class PlayerController : MonoBehaviour
         {
             swordAudioSource.clip = emptySwordSound;
             swordAudioSource.Play();
+        }
+    }
+
+    public void PlayLoadGunSound()
+    {
+        if (audioSource != null)
+        {
+            audioSource.clip = loadGunSound;
+            audioSource.Play();
         }
     }
 }
