@@ -17,8 +17,9 @@ public class NarrationManager : MonoBehaviour
     
     NarrationTrigger narrationTrigger;
 
-    public Animator animator;
-    private AsyncLoader loader;
+    // public Animator animator;
+    DialogueTrigger dialogueTrigger;
+    public GameObject narrationPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +29,13 @@ public class NarrationManager : MonoBehaviour
         // images = new Queue<Sprite>();
         narrationTrigger = FindObjectOfType<NarrationTrigger>();
         narrationTrigger.TriggerNarration();
-        loader = FindObjectOfType<AsyncLoader>();
+        dialogueTrigger = FindObjectOfType<DialogueTrigger>();
+
     }
 
     public void StartDialogue(Narration dialogue)
     {
-        animator.SetBool("IsOpen", true);
+        // animator.SetBool("IsOpen", true);
         // nameText.text = dialogue.name;
         sentences.Clear();
         names.Clear();
@@ -87,9 +89,11 @@ public class NarrationManager : MonoBehaviour
 
     void EndDialogue()
     {
-        animator.SetBool("IsOpen", false);
-        Debug.Log("End of conversation");
-        StartCoroutine(loader.LoadLevelASync("Level1"));
+        // animator.SetBool("IsOpen", false);
+        narrationPanel.SetActive(false);
+        // Debug.Log("End of conversation");
+        GameManager.Instance.PlayBgMusic();
+        dialogueTrigger.TriggerDialogue();
     }
 
     

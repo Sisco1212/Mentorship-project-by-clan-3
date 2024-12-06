@@ -10,11 +10,14 @@ public class GunPowerup : MonoBehaviour
     public Animator playerAnimator;
     private EnemyAI enemyAIScript;
     private Button gunPowerupButton;
+    AudioSource gAudiosource;
+    public AudioClip loadGunSound;
 
     void Start ()
     {
         gunPowerupButton = GetComponent<Button>();
         enemyAIScript = FindObjectOfType<EnemyAI>();
+        gAudiosource = GetComponent<AudioSource>();
     }
 
     public void StartGun() {
@@ -34,5 +37,14 @@ public class GunPowerup : MonoBehaviour
     {
         gunInThigh.SetActive(true);
         gunInHand.SetActive(false);
+    }
+
+     public void PlayLoadGunSound()
+    {
+        if (gAudiosource != null)
+        {
+            gAudiosource.clip = loadGunSound;
+            gAudiosource.Play();
+        }
     }
 }

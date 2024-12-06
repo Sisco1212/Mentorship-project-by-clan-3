@@ -43,8 +43,10 @@ public class PlayerController : MonoBehaviour
 
     public ParticleSystem bloodEffects;
 
+     public AudioClip explosionSound;
+
     // public AudioSource gunSounds;
-    public AudioClip loadGunSound;
+    // public AudioClip loadGunSound;
 
     void Awake(){
         enemy = GameObject.FindWithTag("Enemy").transform;
@@ -89,6 +91,7 @@ public class PlayerController : MonoBehaviour
             fighter.TakeDamage(damageAmount);
             // GetComponent<Animator>().SetBool("SwordPowerup", false);
             FindObjectOfType<Powerup>().EndSwordPowerup();
+            FindObjectOfType<GunPowerup>().EndGunPowerup();
         }
         else{
             if(GameManager.Instance.blockEffects.Length>0){
@@ -242,11 +245,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void PlayLoadGunSound()
+    public void PlayExplosionSound() 
     {
         if (audioSource != null)
         {
-            audioSource.clip = loadGunSound;
+            audioSource.clip = explosionSound;
             audioSource.Play();
         }
     }

@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
 
     public Animator rewardScreenAnimator;
     public GameObject tutorialPanel;
+
+    public AudioSource cameraAudioSource;
+    public AudioClip cameraAudioClip;
    
     private void Awake()
     {
@@ -186,5 +189,13 @@ public class GameManager : MonoBehaviour
     {
         fightStarted = true;
         PlayFightSound();
+    }
+
+    public void PlayBgMusic() {
+        if (cameraAudioSource != null)
+        {
+            cameraAudioSource.clip = cameraAudioClip;
+            cameraAudioSource.Play();
+        }
     }
 }
