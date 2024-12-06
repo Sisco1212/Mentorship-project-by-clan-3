@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         PlayKOSound();
     }
 
-    private void LevelSelection(){
+    public void LevelSelection(){
         SceneManager.LoadScene("LevelSelection");
 
         if (nextSceneLoad > PlayerPrefs.GetInt("levelAt"))

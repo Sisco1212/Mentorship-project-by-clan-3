@@ -9,13 +9,12 @@ public class GunPowerup : MonoBehaviour
     public GameObject gunInHand;
     public Animator playerAnimator;
     private EnemyAI enemyAIScript;
-    private Button gunPowerupButton;
+    public Button gunPowerupButton;
     AudioSource gAudiosource;
     public AudioClip loadGunSound;
 
     void Start ()
     {
-        gunPowerupButton = GetComponent<Button>();
         enemyAIScript = FindObjectOfType<EnemyAI>();
         gAudiosource = GetComponent<AudioSource>();
     }
@@ -24,7 +23,8 @@ public class GunPowerup : MonoBehaviour
         playerAnimator.SetTrigger("Shoot");
         enemyAIScript.powerupCharge = 0;
         enemyAIScript.comboBar.value = 0;
-        // gunPowerupButton.interactable = false;
+        gunPowerupButton.interactable = false;
+        enemyAIScript.BeInactiveFor(3.2f);
     }
 
      public void StartGunPowerup()

@@ -1617,8 +1617,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You Win
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: df355916350acf748bdc1051ec1a606f, type: 2}
+  m_sharedMaterial: {fileID: 8415209184833672272, guid: df355916350acf748bdc1051ec1a606f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4345,7 +4345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1221120230
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4633,7 +4633,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1139253270}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: HideRewardScreen
         m_Mode: 1
@@ -6634,7 +6634,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3097226044078242212
 RectTransform:
   m_ObjectHideFlags: 0

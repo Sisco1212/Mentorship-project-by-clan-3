@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
     
     if (enemy != null)
     {
-        enemy.PerformHurt(50.0f, "hurt");
+        enemy.PerformHurt(30.0f, "hurt");
         GameObject gunImpactEffectCopy = Instantiate(gunImpactEffect, transform.position, transform.rotation);
         Destroy(gunImpactEffectCopy, 2f);
         FindObjectOfType<PlayerController>().PlayExplosionSound();

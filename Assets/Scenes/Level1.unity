@@ -7072,15 +7072,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5020629676429300043, guid: f15df55327489d544be6c2e4721bbf2c, type: 3}
       propertyPath: m_fontColor.b
-      value: 0.8845012
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5020629676429300043, guid: f15df55327489d544be6c2e4721bbf2c, type: 3}
       propertyPath: m_fontColor.g
-      value: 1
+      value: 0.49411765
       objectReference: {fileID: 0}
     - target: {fileID: 5020629676429300043, guid: f15df55327489d544be6c2e4721bbf2c, type: 3}
       propertyPath: m_fontColor.r
-      value: 0.25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5020629676429300043, guid: f15df55327489d544be6c2e4721bbf2c, type: 3}
       propertyPath: m_fontColor32.rgba
